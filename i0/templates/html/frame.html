@@ -1,0 +1,14 @@
+{% comment %}
+	h = 100%	altura da div do frame
+	w = 100%	largura da div do frame
+	url			url do frame
+	fn = ''		nome no frame
+	ft = _self	target do frame _parent _top _blank
+	fh = 100%	altura do frame
+	fw = 100%	largura do frame
+	fb = 0		borda do frame
+{% endcomment%}
+
+<div class="frame" style="height:{{ h|default:'100%' }}; width: {{ w|default:'100%' }};">
+	<iframe src="{{ url }}" id="{{ fn|default:'' }}" target="{{ ft|default:'_self' }}" height="{{ fh|default:'100%' }}" width="{{ fw|default:'100%' }}" style="border:{{ fb|default:0 }};" ></iframe>
+</div>

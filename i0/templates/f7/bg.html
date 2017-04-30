@@ -1,0 +1,17 @@
+{% extends 'html/base.html' %}
+
+{% if rl != '0' %}
+	{% block refresh %}
+		<meta http-equiv="refresh" content="{{ rl }}">
+	{% endblock %}
+{% endif %}
+
+{% block title %}{{ tt }}{% endblock %}
+
+{% block style %}
+	{% include 'css/base.css' %}
+{% endblock %}
+
+{% block content %}
+	<a href="{{ url }}"><div id="tudo"></div></a>
+{% endblock %}

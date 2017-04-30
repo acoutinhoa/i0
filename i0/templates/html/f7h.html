@@ -1,0 +1,15 @@
+{% extends 'html/base.html' %}
+
+{% block title %}{{ tt }}{% endblock %}
+
+{% block style %}
+	{% include 'css/base.css' %}
+	{% include 'css/frame.css' %}
+{% endblock %}
+
+{% block content %}
+	<div id="tudo">
+		{% include "base/frame.html" with url=url1 h=v1 fn='f1' only %}
+		{% include "base/frame.html" with url=url2 h=v2 fn='f2' only %}
+	</div>
+{% endblock %}
