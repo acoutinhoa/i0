@@ -4,74 +4,98 @@ from i0.models import *
 import string
 import random
 
+d7 = {
+	# atualiza
+	'a' : [
+		'0', # atualiza 0s
+		'1', # atualiza random()s
+		'2', # nao atualiza
+	],
+	# tipo
+	'b' : [
+		'bg', # bg
+		# 'img', # img
+	],
+	# cor / img 
+	'c' : {
+		'bg' : [
+			'rrr', # rgb random
+			'10r', # magenta/vermelho random
+			'00r', # azul/preto random
+			'r', # preto/branco random
+			'pb', # choice(p, b)
+			'rgb', # choice(r, g, b, k)
+			'piet', # choice(r, y, b, w)
+		],
+	},
+	# divisao
+	'd' : [
+		'0', # 50%
+		'1', # random()s
+		# '2', # phi
+	],
+}
+
 def index0f(request):
 	return HttpResponse('index0f')
 
-def bg(request, c, d, rl):
-	bg = def_cor(int(c))
-	tt = 'f7bg'
-	url = reverse('f7bg', kwargs={'c': c, 'd': d, 'rl': rl})
+def bg(request, a, b, c, d):
+	tt = 'f7/bg'
 	t = 'f7/bg.html'
-	rl = def_rl(int(rl))
-	return render(request, t, {'tt':tt, 'url':url, 'bg':bg, 'rl':rl})
+	rl = def_a(a)
+	rgb = def_c(b, c)
+	url = reverse('f7', args=(a, b, c, d,))
+	return render(request, t, {'tt':tt, 'url':url, 'bg':rgb, 'rl':rl})
 
-def f7bg(request, c, d, rl):
-	tt = 'f7bg'
+def f7(request, a, b, c, d):
+	tt = 'f7'
 	t = 'f7/f7%s.html' % ( random.choice(['v', 'h']) )
-	url1 = reverse('bg', kwargs={'c': c, 'd': d, 'rl': rl})
-	if int(d) == 2:
-		v1, v2 = def_v(0)
-		url2 = reverse('f7bg', kwargs={'c': c, 'd': d, 'rl': rl})
-	else:
-		v1, v2 = def_v(int(d))
-		url2 = url1
-	return render(request, t, {'tt':tt, 'url1':url1, 'url2':url2, 'v1':v1, 'v2':v2})
+	d1, d2 = def_d(d)
+	url = reverse(b, args=(a, b, c, d,))
+	return render(request, t, {'tt':tt, 'url1':url, 'url2':url, 'v1':d1, 'v2':d2})
 
-def f7bg0(request):
-	c = random.randint(0,3)
-	d = random.randint(0,2)
-	rl = random.randint(0,2)
-	return redirect(f7bg, c=str(c), d=str(d), rl=str(rl) )
+def f70(request):
+	# randomiza variaveis
+	a = random.choice(d7['a'])
+	b = random.choice(d7['b'])
+	c = random.choice(d7['c'][b])
+	d = random.choice(d7['d'])
+	return redirect(f7, a=a, b=b, c=c, d=d)
 
-def def_cor(c):
-	l = []
-	for car in string.hexdigits:
-		l.append(car)
-	if c == 0:
-		cor = '#'
-		for i in range(6):
-			cor += random.choice(l)
-	elif c == 1:
-		cor = ''
-		for i in range(2):
-			cor += random.choice(l)
-		cor = '#0000%s' % (cor)
-	elif c == 2:
-		cor = ''
-		for i in range(2):
-			cor += random.choice(l)
-		cor = '#ff00%s' % (cor)
-	elif c == 3:
-		cor = random.choice(['#f00', '#0f0', '#00f', '#000' ])
+def def_a(a):
+	if a == '1':
+		a = str(random.randint(5,20))
+	elif a == '2':
+		a = ''
+	return a
+
+def def_c(b, c):
+	if c == 'pb':
+		c = random.choice(['0', '1'])
+	elif c == 'rgb':
+		c = random.choice(['100', '010', '001', '0'])
+	elif c == 'piet':
+		c = random.choice(['1', random.choice(['100', '110', '001']) ])
+	cor = ''
+	for car in c:
+		if car == 'r':
+			car = str(random.randint(0, 255))
+		elif car == '1':
+			car = '255'
+		cor += '%s,' % (car)
+		if len(c) == 1:
+			cor = cor*3
+	cor = cor[:-1]
 	return cor
 
-def def_v(d):
-	if d == 0:
-		v1 = v2 = '50%'
-	elif d == 1:
-	    v1 = random.randint(25, 75)
-	    v2 = 100 - v1
-	    v1 = str(v1) + '%'
-	    v2 = str(v2) + '%'
-	return v1, v2
-
-def def_rl(rl):
-	if rl == 0:
-		rl = str(rl)
-	elif rl == 1:
-		rl = str(random.randint(5,20))
-	elif rl == 2:
-		rl = ''
-	return rl
+def def_d(d):
+	if d == '0':
+		d1 = d2 = '50%'
+	elif d == '1':
+	    d1 = random.randint(25, 75)
+	    d2 = 100 - d1
+	    d1 = str(d1) + '%'
+	    d2 = str(d2) + '%'
+	return d1, d2
 
 
