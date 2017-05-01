@@ -78,37 +78,34 @@ def def_c(tp, c):
 	return bg, bgs
 
 
+d7a = [
+	'0', # nao atualiza
+	'1', # atualiza random()s
+	'2', # atualiza 0s
+]
+d7b = [
+	'0', # 50%
+	'1', # random()s
+	# '2', # phi
+]
+d7c = [
+	'pb', # choice(p, b)
+	'rgb', # choice(r, g, b, k)
+	'piet', # choice(r, y, b, w)
+	'xxx', # rgb random
+	'10x', # magenta/vermelho random
+	'00x', # azul/preto random
+]
+
 d7 = {
 	'rgb' : {
-		'a' : [
-			'0', # nao atualiza
-			'1', # atualiza random()s
-			'2', # atualiza 0s
-		],
-		'b' : [
-			'0', # 50%
-			'1', # random()s
-			# '2', # phi
-		],
-		'c' : [
-			'xxx', # rgb random
-			'10x', # magenta/vermelho random
-			'00x', # azul/preto random
-			'pb', # choice(p, b)
-			'rgb', # choice(r, g, b, k)
-		],
+		'a' : d7a,
+		'b' : d7b,
+		'c' : d7c,
 	},
 	'img' : {
-		'a' : [
-			'0', # nao atualiza
-		],
-		'b' : [
-			'0', # 50%
-			'1', # random()s
-			# '2', # phi
-		],
-		'c' : [
-			'hasselhoffian-recursion.gif',
-		],
+		'a' : d7a[0],
+		'b' : d7b,
+		'c' : ['hasselhoffian-recursion.gif',],
 	}
 }
