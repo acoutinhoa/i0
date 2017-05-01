@@ -1,10 +1,6 @@
 {% extends 'html/base.html' %}
 
-{% if rl != '0' %}
-	{% block refresh %}
-		<meta http-equiv="refresh" content="{{ rl }}">
-	{% endblock %}
-{% endif %}
+{% block refresh %}<meta http-equiv="refresh" content="{{ rl }}">{% endblock %}
 
 {% block title %}{{ tt }}{% endblock %}
 

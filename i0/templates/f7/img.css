@@ -1,7 +1,7 @@
 
 body {
-    background: {{ bg|default:'transparent' }};
-    background-size: {{ bgs|default:'auto' }};
+    background: url({{ bg }}) no-repeat;
+    background-size: {{ bgs }};
     padding: 0;
 	margin: 0;
 	border: 0;
