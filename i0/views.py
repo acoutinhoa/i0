@@ -21,6 +21,12 @@ def f7(request, tp, a, b, c):
 	return render(request, t, {'tt':tt, 'url1':url, 'url2':url, 'v1':v1, 'v2':v2})
 
 def bg(request, tp, a, b, c):
+	# randomiza variaveis
+	if tp == '':
+		tp = random.choice(list(d7.keys()))
+		a = random.choice(d7[tp]['a'])
+		b = random.choice(d7[tp]['b'])
+		c = random.choice(d7[tp]['c'])
 	tt = 'f7/bg'
 	t = 'f7/bg.html'
 	url = reverse('f7', args=(tp, a, b, c,))
