@@ -70,7 +70,7 @@ def def_f7c(tp, c):
 			bg = bg*3
 		return 'rgb(%s)' % (bg[:-1])
 	elif tp == 'img':
-		return 'url(/static/i0/gif/%s) no-repeat' % (c)
+		return 'url(%s) no-repeat' % (c)
 
 def def_f7d(d):
 	if d == 'x':
@@ -134,7 +134,7 @@ d7 = {
 	'img' : {
 		'a' : d7a[0],
 		'b' : d7b[0],
-		'c' : ['hasselhoffian-recursion.gif',],
+		'c' : ['/static/i0/gif/hasselhoffian-recursion.gif',],
 		'd' : d7d[0],
 		'e' : d7e,
 	}
