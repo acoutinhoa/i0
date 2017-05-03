@@ -93,7 +93,7 @@ d7 = {
 	'img' : {
 		'a' : d7a[0],
 		'b' : d7b[0],
-		'c' : ['/static/i0/gif/hasselhoffian-recursion.gif',],
+		'c' : ['/static/i0/hasselhoffian-recursion.gif',],
 		'd' : d7d[0],
 		'e' : d7e,
 	},
@@ -156,35 +156,6 @@ def def_f7e(e):
 	return str(v1) + '%', str(v2) + '%'
 
 def def_f7f(b, c, d, e):
-	# borda
-	if b == 'x':
-		b = random.choice(['0', '1'])
-	if b == '1':
-		# cor borda
-		if c == 'pb':
-			c = 'x'
-		elif c == 'rgb':
-			c = '1'
-		elif c == 'piet':
-			c = '0'
-		elif c == 'cmyx':
-			c = random.choice(['0', '1'])
-		l = []
-		for car in string.hexdigits:
-			l.append(car)
-		cor = ''
-		for car in c:
-			if car == 'x':
-				for i in range(2):
-					cor += random.choice(l)
-			elif car == '0':
-				cor += '00'
-			elif car == '1':
-				cor += 'ff'
-		if len(c) == 1:
-			cor = cor*3
-	else:
-		cor = 'none'
 	# divisao
 	if d == 'x':
 		d = random.choice(['v', 'h'])
@@ -199,6 +170,41 @@ def def_f7f(b, c, d, e):
 		e = random.choice([40, 60])
 	elif e == 'x':
 	    e = random.randint(25, 75)
-	return '%s="%s,*" border="10" frameborder="%s" bordercolor="%s"' % (d, str(e)+'%', b, '#'+cor)
+	# borda
+	bc = ''
+	if len(b) > 1:
+		bc = b[1:]
+		b = b[0]
+	if b == 'x':
+		b = random.choice(['0', '1'])
+	if b == '1':
+		# cor borda
+		if bc == '':
+			if c == 'pb':
+				bc = 'x'
+			elif c == 'rgb':
+				bc = '1'
+			elif c == 'piet':
+				bc = '0'
+			elif c == 'xxx':
+				bc = c
+			else:
+				bc = random.choice(['0', '1'])
+		elif bc == 'pb':
+			bc = random.choice(['0', '1'])
+		cor = ''
+		for car in bc:
+			if car == 'x':
+				for i in range(2):
+					cor += random.choice(list(string.hexdigits))
+			elif car == '0':
+				cor += '00'
+			elif car == '1':
+				cor += 'ff'
+		if len(bc) == 1:
+			cor = cor*3
+		return '{0}="{1}%,*" frameborder="{2}" border="10" bordercolor="#{3}"'.format(d, str(e), b, cor)
+	else:
+		return '{0}="{1}%,*" frameborder="{2}"'.format(d, str(e), b)
 
 
