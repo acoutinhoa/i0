@@ -3,7 +3,7 @@
 	w = 100%	largura da div do frame
 	url			url do frame
 	s = 0		style do frame
-{% endcomment%}
+{% endcomment %}
 
 <div class="frame" style="height:{{ h|default:'100%' }}; width: {{ w|default:'100%' }};">
 	<iframe src="{{ url }}" target="_self" height="100%" width="100%" style="{{ s|default:'border: none;' }}"></iframe>

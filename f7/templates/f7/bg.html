@@ -1,13 +1,13 @@
-{% extends 'html/base.html' %}
+{% extends 'f7/base.html' %}
 
 {% block refresh %}<meta http-equiv="refresh" content="{{ rl }}">{% endblock %}
 
 {% block title %}{{ tt }}{% endblock %}
 
 {% block style %}
-	{% include 'css/base.css' with bg=bg bgs='background-size: 100vw 100vh;' %}
+{% include 'css/base.css' with bg=bg bgs='background-size: 100vw 100vh;' %}
 {% endblock %}
 
 {% block content %}
-	<a href="{{ url }}"><div id="tudo"></div></a>
+<a href="{{ url }}"><div id="tudo"></div></a>
 {% endblock %}
