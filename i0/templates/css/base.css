@@ -1,10 +1,9 @@
 
 body {
-    background: {{ bg|default:'transparent' }};
-    background-size: {{ bgs|default:'100vw 100vh' }};
     padding: 0;
 	margin: 0;
-	border: 0;
+    {{ bg|default:'' }}
+    {{ bgs|default:'' }}
 }
 
 #tudo {
