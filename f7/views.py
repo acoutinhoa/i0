@@ -30,8 +30,8 @@ def bg(request, tp, a, b, c, d, e):
 	tt = 'f7/bg/%s' % (tp)
 	url = reverse('f7', args=(tp, a, b, c, d, e))
 	rl = def_a(a)
-	bg = def_c(tp, c)
-	return render(request, t, {'tt':tt, 'url':url, 'bg':bg, 'rl':rl})
+	bg, bgs = def_c(tp, c)
+	return render(request, t, {'tt':tt, 'url':url, 'bg':bg, 'bgs':bgs, 'rl':rl})
 
 # defs
 def def_var(tp, a, b, c, d, e):
@@ -53,6 +53,8 @@ def def_var(tp, a, b, c, d, e):
 	else:
 		dn = int(d[1:])+1
 		d = d[0]+str(dn)
+	if tp == 'img' and c[-3:] == 'gif' and a != '0':
+		a == '0'
 	return tp, a, b, c, d, e
 
 def def_xxx():
@@ -102,7 +104,13 @@ def def_a(a):
 
 def def_c(tp, c):
 	if tp == 'img':
-		return 'background: url(%s) no-repeat;' % (c)
+		if c[-3:] == 'gif':
+			bg = 'url(%s) no-repeat' % (c)
+			bgs = '100vw 100vh'
+		else:
+			bg = 'url(%s) no-repeat center fixed' % (c)
+			bgs = 'cover'
+		return bg, bgs
 	else:
 		if c == 'pb':
 			c = random.choice(['0', '1'])
@@ -112,7 +120,7 @@ def def_c(tp, c):
 			c = random.choice(['1', random.choice(['100', '110', '001']) ])
 		elif c == 'cmyx':
 			c = random.choice(['011', '101', '110', random.choice(['0', '1']) ])
-		return 'background: %s;' % (def_rgb(c))
+		return def_rgb(c), ''
 
 def def_d(d):
 	if d == 'x':
@@ -220,7 +228,10 @@ d7 = {
 	'img' : {
 		'a' : d7a[0],
 		'b' : d7b[0],
-		'c' : ['/static/f7/hasselhoffian-recursion.gif',],
+		'c' : [
+			'/static/f7/hasselhoffian-recursion.gif', 
+			'/static/f7/guido-van-rossum_python.jpg',
+		],
 		'd' : d7d[0],
 		'e' : d7e,
 	},

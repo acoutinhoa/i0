@@ -1,8 +1,8 @@
 body {
     padding: 0;
 	margin: 0;
-    {{ bg|default:'' }}
-    {{ bgs|default:'' }}
+	background: {{ bg|default:'' }};
+	background-size: {{ bgs|default:'' }};
 }
 
 #tudo {
