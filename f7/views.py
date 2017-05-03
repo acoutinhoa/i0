@@ -11,10 +11,14 @@ def f7(request, tp, a, b, c, d, e):
 	tt = 'f7/%s' % (tp)
 	url = reverse('bg', args=(tp, a, b, c, d, e))
 	if tp == 'piet':
-		f = def_f(b, c, d, e)
+		f = def_f(b, c, d[0], e)
 		return render(request, 'f7/f7.html', {'tt':tt, 'url1':url, 'url2':url, 'f7':f})
+	elif tp == 'l8p':
+		f = def_f(b, c, d[0], e)
+		url2 = reverse('f7', args=(tp, a, b, c, d, e))
+		return render(request, 'f7/f7.html', {'tt':tt, 'url1':url2, 'url2':url, 'f7':f})
 	else:
-		t = def_d(d)
+		t = def_d(d[0])
 		v1, v2 = def_e(e)
 		return render(request, t, {'tt':tt, 'url1':url, 'url2':url, 'v1':v1, 'v2':v2})
 
@@ -43,6 +47,12 @@ def def_var(tp, a, b, c, d, e):
 		c = def_xxx()
 	if b[1:] == 'def':
 		b = b[0] + def_xxx()
+	if len(d) == 1:
+		dn = '0'
+		d += dn
+	else:
+		dn = int(d[1:])+1
+		d = d[0]+str(dn)
 	return tp, a, b, c, d, e
 
 def def_xxx():
@@ -204,7 +214,7 @@ d7 = {
 		'a' : d7a,
 		'b' : d7b[0],
 		'c' : d7c,
-		'd' : d7d[0],
+		'd' : d7d,
 		'e' : d7e,
 	},
 	'img' : {
@@ -218,7 +228,14 @@ d7 = {
 		'a' : d7a,
 		'b' : d7b,
 		'c' : d7c,
-		'd' : d7d[0],
+		'd' : d7d,
+		'e' : d7e,
+	},
+	'l8p' : {
+		'a' : d7a,
+		'b' : d7b,
+		'c' : d7c,
+		'd' : d7d,
 		'e' : d7e,
 	},
 }
