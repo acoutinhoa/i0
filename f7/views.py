@@ -10,8 +10,11 @@ def f7(request, f7tp, l8p, tp, a, b, c, d, e):
 	url0 = url1 = reverse('bg', args=(f7tp, l8p, tp, a, b, c, d, e))
 	# l8p
 	if l8p == 'x':
-		l8p = random.choice(['0', '1'])
-	if l8p == '0':
+		if random.randint(0,1):
+			url0 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+		else:
+			url1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+	elif l8p == '0':
 		url0 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
 	elif l8p == '1':
 		url1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
@@ -210,8 +213,12 @@ def def_e(f7tp, e):
 		return str(v0) + '%', str(v1) + '%'
 
 # variaveis
+# / f7 / f7tp + l8p / tp / a / b / c / d / e /
 
 # f7tp = tipo
+	# 0 = iframe
+	# 1 = frameset
+	# 2 = iframe img
 # l8p = loop
 	# - = sem l8p
 	# 0 = l8p url0
