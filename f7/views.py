@@ -6,46 +6,38 @@ import random
 
 def f7(request, f7tp, l8p, tp, a, b, c, d, e):
 	f7tp, l8p, tp, a, b, c, d, e = def_var(f7tp, l8p, tp, a, b, c, d, e)
+	ur1, ur2 = def_l8p(f7tp, l8p, tp, a, b, c, d, e)
 	tt = 'f7/%s' % (f7tp)
-	url0 = url1 = reverse('bg', args=(f7tp, l8p, tp, a, b, c, d, e))
-	# l8p
-	if l8p == 'x':
-		if random.randint(0,1):
-			url0 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-		else:
-			url1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-	elif l8p == '0':
-		url0 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-	elif l8p == '1':
-		url1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+	if l8p != '0':
+		tt += ' l8p'
 	# html framset
-	if f7tp == '1':
+	if f7tp == 'pi3t':
 		t = 'f7/f7.html'
 		d = def_d(f7tp, d)
 		b, bc = def_b(tp, b)	
-		v0, v1 = def_e(f7tp, e)
+		v1, v2 = def_e(f7tp, e)
 		if b == '1':
-			f = '%s="%s,%s" frameborder="%s" border="10" bordercolor="%s"' % (d, v0, v1, b, def_hxc(bc))
+			f = '%s="%s,%s" frameborder="%s" border="10" bordercolor="%s"' % (d, v1, v2, b, def_hxc(bc))
 		else:
-			f = '%s="%s,%s" frameborder="%s"' % (d, v0, v1, b)
-		return render(request, t, {'tt':tt, 'url0':url0, 'url1':url1, 'f7':f})
+			f = '%s="%s,%s" frameborder="%s"' % (d, v1, v2, b)
+		return render(request, t, {'tt':tt, 'ur1':ur1, 'ur2':ur2, 'f7':f})
 	# html iframe
 	else:
 		t = 'f7/f7%s.html' % (def_d(f7tp, d))
 		b, bc = def_b(tp, b)
-		s0 = def_bs(b, bc)
 		s1 = def_bs(b, bc)
-		v0, v1 = def_e(f7tp, e)
-		return render(request, t, {'tt':tt, 'url0':url0, 'url1':url1, 'v0':v0, 'v1':v1, 's0':s0, 's1':s1})
+		s2 = def_bs(b, bc)
+		v1, v2 = def_e(f7tp, e)
+		return render(request, t, {'tt':tt, 'ur1':ur1, 'ur2':ur2, 'v1':v1, 'v2':v2, 's1':s1, 's2':s2})
 
-def bg(request, f7tp, l8p, tp, a, b, c, d, e):
+def b9(request, f7tp, l8p, tp, a, b, c, d, e):
 	f7tp, l8p, tp, a, b, c, d, e = def_var(f7tp, l8p, tp, a, b, c, d, e)
-	t = 'f7/bg.html'
-	tt = 'f7/bg/%s' % (f7tp)
-	url = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-	rl = def_a(a)
+	t = 'f7/b9.html'
+	tt = 'f7/b9/%s' % (f7tp)
+	ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+	rf = def_a(a)
 	bg, bgs = def_tp(f7tp, tp)
-	return render(request, t, {'tt':tt, 'url':url, 'bg':bg, 'bgs':bgs, 'rl':rl})
+	return render(request, t, {'tt':tt, 'ur1':ur1, 'bg':bg, 'bgs':bgs, 'rf':rf})
 
 # defs
 def def_var(f7tp, l8p, tp, a, b, c, d, e):
@@ -53,9 +45,9 @@ def def_var(f7tp, l8p, tp, a, b, c, d, e):
 		f7tp = random.choice(d7tp)
 
 	if l8p == '':
-		l8p = random.choice(['-', random.choice(['-', random.choice(d7x)])])
+		l8p = random.choice([ '0', random.choice(d78) ])
 
-	if f7tp == '2':
+	if f7tp == 'im9':
 		if tp == '':
 			tp = random.choice(d7img)
 		if a == '':
@@ -65,12 +57,12 @@ def def_var(f7tp, l8p, tp, a, b, c, d, e):
 		if tp == '':
 			tp = random.choice(d7cor)
 		if a == '':
-			a = random.choice(['x', random.choice(d7x)])
+			a = random.choice([ 'x', random.choice(d7x) ])
 			b = random.choice(d7x)
 
 	if c == '': 
 		c = '0'
-		d = random.choice(['x', random.choice(d7x)])
+		d = random.choice([ 'x', random.choice(d7x) ])
 		e = random.choice(d7x)
 	else:
 		c = str(int(c)+1)
@@ -82,45 +74,21 @@ def def_var(f7tp, l8p, tp, a, b, c, d, e):
 
 	return f7tp, l8p, tp, a, b, c, d, e
 
-def def_xxx():
-	cor = ''
-	for i in range(3):
-		cor += random.choice(d7x)
-	if 'x' not in cor:
-		if cor == '000' or cor == '111':
-			cor = 'x'
+def def_l8p(f7tp, l8p, tp, a, b, c, d, e):
+	ur1 = ur2 = reverse('b9', args=(f7tp, l8p, tp, a, b, c, d, e))
+	if l8p == 'x':
+		if random.randint(0,1):
+			ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
 		else:
-			cor = def_xxx()
-	return cor
-
-def def_rgb(c):
-	cor = ''
-	for i in c:
-		if i == 'x':
-			i = str(random.randint(0, 255))
-		elif i == '1':
-			i = '255'
-		cor += '%s,' % (i)
-	if len(c) == 1:
-		cor = cor*3
-	return 'rgb(%s)' % (cor[:-1])
-
-def def_hxc(c):
-	cor = ''
-	for i in c:
-		if i == 'x':
-			for j in range(2):
-				cor += random.choice(list(string.hexdigits))
-		elif i == '0':
-			cor += '00'
-		elif i == '1':
-			cor += 'ff'
-	if len(c) == 1:
-		cor = cor*3
-	return '#%s' % (cor)
+			ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+	elif l8p == '1':
+		ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+	elif l8p == '2':
+		ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+	return ur1, ur2
 
 def def_tp(f7tp, tp):
-	if f7tp == '2':
+	if f7tp == 'im9':
 		if tp[-3:] == 'gif':
 			bg = 'url(%s) no-repeat' % (tp)
 			bgs = '100vw 100vh'
@@ -190,7 +158,7 @@ def def_bs(b, bc):
 def def_d(f7tp, d):
 	if d == 'x':
 		d = random.choice(['0', '1'])
-	if f7tp == '1':
+	if f7tp == 'pi3t':
 		if d == '0':
 			return 'rows'
 		elif d == '1':
@@ -200,30 +168,68 @@ def def_d(f7tp, d):
 
 def def_e(f7tp, e):
 	if e == '0':
-		v0 = 50
+		v1 = 50
 	elif e == '1':
-		v0 = random.choice([40, 60])
-		# v0 = random.choice([38.1966, 61.8034])
+		v1 = random.choice([40, 60])
+		# v1 = random.choice([38.1966, 61.8034])
 	elif e == 'x':
-	    v0 = random.randint(25, 75)
-	if f7tp == '1':
-		return str(v0) + '%', '*'
+	    v1 = random.randint(25, 75)
+	if f7tp == 'pi3t':
+		return str(v1) + '%', '*'
 	else:
-		v1 = 100-v0
-		return str(v0) + '%', str(v1) + '%'
+		v2 = 100-v1
+		return str(v1) + '%', str(v2) + '%'
+
+def def_xxx():
+	cor = ''
+	for i in range(3):
+		cor += random.choice(d7x)
+	if 'x' not in cor:
+		if cor == '000' or cor == '111':
+			cor = 'x'
+		else:
+			cor = def_xxx()
+	return cor
+
+def def_rgb(c):
+	cor = ''
+	for i in c:
+		if i == 'x':
+			i = str(random.randint(0, 255))
+		elif i == '1':
+			i = '255'
+		cor += '%s,' % (i)
+	if len(c) == 1:
+		cor = cor*3
+	return 'rgb(%s)' % (cor[:-1])
+
+def def_hxc(c):
+	cor = ''
+	for i in c:
+		if i == 'x':
+			for j in range(2):
+				cor += random.choice(list(string.hexdigits))
+		elif i == '0':
+			cor += '00'
+		elif i == '1':
+			cor += 'ff'
+	if len(c) == 1:
+		cor = cor*3
+	return '#%s' % (cor)
+
 
 # variaveis
 # / f7 / f7tp + l8p / tp / a / b / c / d / e /
 
 # f7tp = tipo
-	# 0 = iframe
-	# 1 = frameset
-	# 2 = iframe img
+	# pi3t = frameset html0ldschool
+	# rg6 = iframe bg-color
+	# im9 = iframe img
 # l8p = loop
-	# - = sem l8p
-	# 0 = l8p url0
-	# 1 = l8p url1
-	# x = l8p url0/url1
+	# 0 = sem l8p
+	# 1 = l8p ur1
+	# 2 = l8p ur2
+	# x = l8p ur1/ur2
 # tp = cor/img
 # a = atualiza
 	# 0 = nao atualiza
@@ -245,9 +251,9 @@ def def_e(f7tp, e):
 
 # f7tp
 d7tp = [
-	'0', # iframe
-	'1', # frameset
-	'2', # iframe img
+	'pi3t', # frameset html0ldschool
+	'rg6', # iframe bg-color
+	'im9', # iframe img
 ]
 # tp
 d7img = [
@@ -268,5 +274,12 @@ d7cor = [
 d7x = [
 	'0',
 	'1',
+	'x',
+]
+
+d78 = [
+	'0',
+	'1',
+	'2',
 	'x',
 ]
