@@ -7,35 +7,36 @@ import random
 def f7(request, f7tp, l8p, tp, a, b, c, d, e):
 	f7tp, l8p, tp, a, b, c, d, e = def_var(f7tp, l8p, tp, a, b, c, d, e)
 	ur1, ur2 = def_l8p(f7tp, l8p, tp, a, b, c, d, e)
+	v1, v2 = def_e(f7tp, e)
+	b, bc = def_b(tp, b)
+	d = def_d(f7tp, d)
 	tt = 'f7/%s' % (f7tp)
 	if l8p != '0':
 		tt += ' l8p'
 	# html framset
 	if f7tp == 'pi3t':
-		t = 'f7/f7.html'
-		d = def_d(f7tp, d)
-		b, bc = def_b(tp, b)	
-		v1, v2 = def_e(f7tp, e)
 		if b == '1':
 			f = '%s="%s,%s" frameborder="%s" border="10" bordercolor="%s"' % (d, v1, v2, b, def_hxc(bc))
 		else:
 			f = '%s="%s,%s" frameborder="%s"' % (d, v1, v2, b)
-		return render(request, t, {'tt':tt, 'ur1':ur1, 'ur2':ur2, 'f7':f})
+		return render(request, 'f7/f7.html', {'tt':tt, 'ur1':ur1, 'ur2':ur2, 'f7':f})
 	# html iframe
+	if f7tp == 'qd2':
+		bg, bgs = def_tp(f7tp, tp)
+		fs = def_bs(b, bc)
+		s = def_s(d, v1, v2)
+		return render(request, 'f7/f7q.html', {'tt':tt, 'ur1':ur1, 'ur2':ur2, 'v1':v1, 'v2':v2, 's':s, 'fs':fs, 'bg':bg, 'bgs':bgs,})
 	else:
-		t = 'f7/f7%s.html' % (def_d(f7tp, d))
-		b, bc = def_b(tp, b)
-		s1 = def_bs(b, bc)
-		s2 = def_bs(b, bc)
-		v1, v2 = def_e(f7tp, e)
-		return render(request, t, {'tt':tt, 'ur1':ur1, 'ur2':ur2, 'v1':v1, 'v2':v2, 's1':s1, 's2':s2})
+		fs1 = def_bs(b, bc)
+		fs2 = def_bs(b, bc)
+		return render(request, 'f7/f7i.html', {'tt':tt, 'ur1':ur1, 'ur2':ur2, 'v1':v1, 'v2':v2, 'fs1':fs1, 'fs2':fs2, 'd':d})
 
 def b9(request, f7tp, l8p, tp, a, b, c, d, e):
 	f7tp, l8p, tp, a, b, c, d, e = def_var(f7tp, l8p, tp, a, b, c, d, e)
 	t = 'f7/b9.html'
 	tt = 'f7/b9/%s' % (f7tp)
 	ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-	rf = def_a(a)
+	rf = def_a(f7tp, a)
 	bg, bgs = def_tp(f7tp, tp)
 	return render(request, t, {'tt':tt, 'ur1':ur1, 'bg':bg, 'bgs':bgs, 'rf':rf})
 
@@ -45,25 +46,31 @@ def def_var(f7tp, l8p, tp, a, b, c, d, e):
 		f7tp = random.choice(d7tp)
 
 	if l8p == '':
-		l8p = random.choice([ '0', random.choice(d78) ])
+		if f7tp == 'qd2':
+			l8p = random.choice([ '0', random.choice([ '0', '1' ]) ])
+		else:
+			l8p = random.choice([ '0', random.choice(d7l8p) ])
 
-	if f7tp == 'im9':
-		if tp == '':
+	if tp == '':
+		if f7tp == 'im9':
 			tp = random.choice(d7img)
-		if a == '':
+		else:
+			tp = random.choice(d7cor)
+
+	if a == '':
+		if f7tp == 'im9':
 			a = '0'
 			b = '0'
-	else:
-		if tp == '':
-			tp = random.choice(d7cor)
-		if a == '':
+		else:
 			a = random.choice([ 'x', random.choice(d7x) ])
 			b = random.choice(d7x)
+		if f7tp == 'qd2':
+			d = random.choice([ 'x', random.choice(d7d) ])
+		d += random.choice([ 'x', random.choice(d7x) ])
+		e = random.choice(d7x)
 
 	if c == '': 
 		c = '0'
-		d = random.choice([ 'x', random.choice(d7x) ])
-		e = random.choice(d7x)
 	else:
 		c = str(int(c)+1)
 
@@ -75,16 +82,21 @@ def def_var(f7tp, l8p, tp, a, b, c, d, e):
 	return f7tp, l8p, tp, a, b, c, d, e
 
 def def_l8p(f7tp, l8p, tp, a, b, c, d, e):
-	ur1 = ur2 = reverse('b9', args=(f7tp, l8p, tp, a, b, c, d, e))
-	if l8p == 'x':
-		if random.randint(0,1):
+	if f7tp == 'qd2':
+		ur1 = ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+		if l8p == '0':
+			ur2 = reverse('b9', args=(f7tp, l8p, tp, a, b, c, d, e))
+	else:
+		ur1 = ur2 = reverse('b9', args=(f7tp, l8p, tp, a, b, c, d, e))
+		if l8p == 'x':
+			if random.randint(0,1):
+				ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+			else:
+				ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+		elif l8p == '1':
 			ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-		else:
+		elif l8p == '2':
 			ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-	elif l8p == '1':
-		ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-	elif l8p == '2':
-		ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
 	return ur1, ur2
 
 def def_tp(f7tp, tp):
@@ -107,13 +119,16 @@ def def_tp(f7tp, tp):
 			tp = random.choice(['011', '101', '110', random.choice(['0', '1']) ])
 		return def_rgb(tp), ''
 
-def def_a(a):
+def def_a(f7tp, a):
 	if a == '0':
 		return ''
 	elif a == '1':
 		return '0'
 	elif a == 'x':
-		return str(random.randint(5,20))
+		if f7tp == 'qd2':
+			return str(random.randint(1,5))
+		else:
+			return str(random.randint(5,15))
 
 def def_b(tp, b):
 	bc = ''
@@ -161,24 +176,73 @@ def def_d(f7tp, d):
 	if f7tp == 'pi3t':
 		if d == '0':
 			return 'rows'
-		elif d == '1':
+		else:
 			return 'cols'
 	else:
 		return d
 
 def def_e(f7tp, e):
-	if e == '0':
-		v1 = 50
-	elif e == '1':
-		v1 = random.choice([40, 60])
-		# v1 = random.choice([38.1966, 61.8034])
-	elif e == 'x':
-	    v1 = random.randint(25, 75)
-	if f7tp == 'pi3t':
-		return str(v1) + '%', '*'
-	else:
-		v2 = 100-v1
+	if f7tp == 'qd2':
+		if e == '0':
+			v1 = v2 = 80
+		elif e == '1':
+			v1 = v2 = 60
+		elif e == 'x':
+		    v1 = random.randint(50, 95)
+		    v2 = random.randint(50, 95)
 		return str(v1) + '%', str(v2) + '%'
+	else:
+		if e == '0':
+			v1 = 50
+		elif e == '1':
+			v1 = random.choice([40, 60])
+			# v1 = random.choice([38.1966, 61.8034])
+		elif e == 'x':
+		    v1 = random.randint(25, 75)
+		if f7tp == 'pi3t':
+			return str(v1) + '%', '*'
+		else:
+			v2 = 100-v1
+			return str(v1) + '%', str(v2) + '%'
+def def_s(d, v1, v2):
+	v1 = int(v1[:-1])
+	v2 = int(v2[:-1])
+	m1 = (100-v1)/2 # meio
+	m2 = (100-v2)/2 # meio
+	# alinha
+	if d[1] == 'x':
+		a1 = random.randint(0, int(m1))
+		a2 = random.randint(0, int(m2))
+	elif d[1] == '1':
+		a1 = a2 = 5
+	else:
+		a1 = a2 = 0
+	# margem
+	if d[0] == 'x':
+		d = random.randint(1, 8)
+	else:
+		d = int(d[0])
+	if d == 1:
+		m1 = 0 + a1
+		m2 = 0 + a2
+	elif d == 2:
+		m1 = m1*2 - a1
+		m2 = 0 + a2
+	elif d == 3:
+		m1 = 0 + a1
+		m2 = m2*2 - a2
+	elif d == 4:
+		m1 = m1*2 - a1
+		m2 = m2*2 - a2
+	elif d == 5:
+		m2 = 0 + a2
+	elif d == 6:
+		m2 = m2*2 - a2
+	elif d == 7:
+		m1 = 0 + a1
+	elif d == 8:
+		m1 = m1*2 - a1
+	return 'margin-left: %svw; margin-top: %svh;' % (str(m1), str(m2))
 
 def def_xxx():
 	cor = ''
@@ -254,6 +318,7 @@ d7tp = [
 	'pi3t', # frameset html0ldschool
 	'rg6', # iframe bg-color
 	'im9', # iframe img
+	'qd2', # qd2 ht# josef jo5ef jos3f jose# j0sef
 ]
 # tp
 d7img = [
@@ -277,9 +342,22 @@ d7x = [
 	'x',
 ]
 
-d78 = [
-	'0',
-	'1',
+d7l8p = [
+	'0', 
+	'1', 
 	'2',
 	'x',
+]
+
+d7d = [
+	'0', # centralizado
+	'1', # t l
+	'2', # t r
+	'3', # b l
+	'4', # b r
+	'5', # t
+	'6', # b
+	'7', # l
+	'8', # r
+	'x', # aleatorio
 ]
