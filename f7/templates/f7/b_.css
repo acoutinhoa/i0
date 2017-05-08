@@ -1,12 +1,17 @@
 body {
     padding: 0;
 	margin: 0;
-	background: {{ bg|default:'' }};
-	background-size: {{ bgs|default:'' }};
+	{{ b|default:'' }}
 }
 
 #tudo {
 	position: fixed;
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
+	{{ t|default:'' }}
 }
+
+#tudo:hover {
+	{{ th|default:'' }}
+}
+

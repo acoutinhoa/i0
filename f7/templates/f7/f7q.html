@@ -1,11 +1,9 @@
 {% extends 'f7/b_.html' %}
 
-{% block title %}{{ tt }}{% endblock %}
-
 {% block style %}
 {% include 'f7/b_.css' %}
 .frame {
-	{{ s|default:'' }}
+	{{ f|default:'' }}
 }
 {% endblock %}
 
