@@ -171,8 +171,8 @@ def def_bg(tp):
 	return 'background: %s;' % (def_rgb(cor))
 
 def def_img(tp):
-	tdh = '''-ms-transform: rotate(20deg); /* IE 9 */
-	-webkit-transform: rotate(20deg); /* Safari */
+	tdh = '''-ms-transform: rotate(180deg); /* IE 9 */
+	-webkit-transform: rotate(180deg); /* Safari */
 	transform: rotate(180deg);'''
 	if tp[-3:] == 'gif':
 		bg = 'url(%s) no-repeat' % (tp)
