@@ -25,7 +25,7 @@ def f7(request, f7tp, v4r, l8p, f7, b9, a, b, c, d, e):
 		})
 	else:
 		if f7tp == 'qd2':
-			cs2, td, tdh = def_an3(a, b9, v4r)
+			bg, cs2, td, tdh = def_an3(a, b, b9, v4r, f7tp)
 			f = def_f2(d, v1, v2)
 			fs = def_bc(bc)
 			return render(request, 'f7/f7q.html', {
@@ -61,21 +61,12 @@ def b9(request, f7tp, v4r, l8p, f7, b9, a, b, c, d, e):
 	f7tp, v4r, l8p, f7, b9, a, b, c, d, e = def_var(f7tp, v4r, l8p, f7, b9, a, b, c, d, e)
 	ur1 = reverse('f7', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
 	tt = 'f7/b9/%s' % (f7tp)
-	bg = ''
-	cs2 = ''
 	rf = def_a(f7tp, b9, a)
-	if f7tp == 'tr1':
-		bg = def_bg(v4r)
-		td = def_bs(b, v4r)
-		tdh = def_bs(b, v4r)
-	elif f7tp == 'd0t':
-		bg = def_bg(v4r)
-		td = def_br(b, v4r)
-		tdh = def_br(b, v4r)
-	elif f7tp == 'im9':
+	if f7tp == 'im9':
+		bg = cs2 = ''
 		td, tdh = def_img(v4r)
 	else:
-		cs2, td, tdh = def_an3(a, b9, v4r)
+		bg, cs2, td, tdh = def_an3(a, b, b9, v4r, f7tp)
 	return render(request, 'f7/b9.html', {
 		'b':bg, 
 		'td':td, 
@@ -168,18 +159,33 @@ def def_img(v4r):
 	td = 'background: %s;\n\tbackground-size: %s;' % (bg, bgs)
 	return td, tdh
 
-def def_an3(a, b9, v4r):
+def def_an3(a, b, b9, v4r, f7tp):
 	def stp(n):
 		stp = '\n\t%s  {%s}'
 		t = 100/(n+1)
 		s = ''
 		for i in range(n):
-			s += stp % (str(t*(i+1))+'%', def_bg(v4r))
+			if f7tp == 'tr1':
+				s += stp % (str(t*(i+1))+'%', def_bs(b, v4r))
+			elif f7tp == 'd0t':
+				s += stp % (str(t*(i+1))+'%', def_br(b, v4r))
+			else:
+				s += stp % (str(t*(i+1))+'%', def_bg(v4r))
 		return s
 
-	cs2 = ''
-	td = def_bg(v4r)
-	tdh = def_bg(v4r)
+	bg = cs2 = ''
+	if f7tp == 'tr1':
+		bg = def_bg(v4r)
+		td = def_bs(b, v4r)
+		tdh = def_bs(b, v4r)
+	elif f7tp == 'd0t':
+		bg = def_bg(v4r)
+		td = def_br(b, v4r)
+		tdh = def_br(b, v4r)
+	else:
+		td = def_bg(v4r)
+		tdh = def_bg(v4r)
+
 	if b9 == '1':
 		webkit = ''
 		an3 = '\n\t%sanimation: %s %ss infinite;'
@@ -198,7 +204,7 @@ def def_an3(a, b9, v4r):
 			cs2 += anm % (webkit, 'an3h', stp(n))
 			td += an3 % (webkit, 'an3', str(t))
 			tdh += an3 % (webkit, 'an3h', '1')
-	return cs2, td, tdh
+	return bg, cs2, td, tdh
 
 def def_a(f7tp, b9, a):
 	rf = ''
