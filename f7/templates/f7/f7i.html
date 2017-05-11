@@ -6,10 +6,11 @@
 	position: relative; 
 	float: left;
 }
+{{ cs2|default:'' }}
 {% endblock %}
 
 {% block content %}
-<div id="tudo">
+<div>
 {% if d == '0' %}
 	{% include "f7/f_.html" with ur1=ur1 h=v1 fs=fs1 only %}
 	{% include "f7/f_.html" with ur1=ur2 h=v2 fs=fs2 only %}

@@ -4,16 +4,18 @@ from django.urls import reverse
 import string
 import random
 
-def f7(request, f7tp, l8p, tp, a, b, c, d, e):
-	f7tp, l8p, tp, a, b, c, d, e = def_var(f7tp, l8p, tp, a, b, c, d, e)
-	ur1, ur2 = def_l8p(f7tp, l8p, tp, a, b, c, d, e)
-	b, bc = def_b(tp, b)
-	d = def_d(f7tp, d)
-	v1, v2 = def_e(f7tp, e)
+def f7(request, f7tp, v4r, l8p, f7, b9, a, b, c, d, e):
+	f7tp, v4r, l8p, f7, b9, a, b, c, d, e = def_var(f7tp, v4r, l8p, f7, b9, a, b, c, d, e)
+	ur1, ur2 = def_l8p(f7tp, v4r, l8p, f7, b9, a, b, c, d, e)
+	if f7 == 'x':
+		f7 = random.choice(d7o)
 	tt = 'f7/%s' % (f7tp)
+	b, bc = def_b(v4r, b)
+	v1, v2 = def_e(f7tp, e)
+	d = def_d(f7, d)
 	if l8p != '0':
 		tt += ' l8p'
-	if f7tp == 'pi3t':
+	if f7 == '0':
 		f = def_f1(d, v1, v2, b, bc)
 		return render(request, 'f7/f7.html', {
 			'tt':tt, 
@@ -21,185 +23,201 @@ def f7(request, f7tp, l8p, tp, a, b, c, d, e):
 			'ur2':ur2, 
 			'f7':f,
 		})
-	elif f7tp == 'qd2':
-		bg = def_bg(tp)
-		th = def_bg(tp)
-		f = def_f2(d, v1, v2)
-		fs = def_bc(bc)
-		return render(request, 'f7/f7q.html', {
-			'f':f, # css
-			'b':bg, # css
-			'th':th, # hover
-			'tt':tt, 
-			'ur1':ur1, 
-			'ur2':ur2, 
-			'v1':v1, 
-			'v2':v2, 
-			'fs':fs, 
-		})
 	else:
-		if f7tp == 'cs5' or f7tp == 'd0t':
-			fs1 = fs2 = ''
+		if f7tp == 'qd2':
+			cs2, td, tdh = def_an3(a, b9, v4r)
+			f = def_f2(d, v1, v2)
+			fs = def_bc(bc)
+			return render(request, 'f7/f7q.html', {
+				'f':f, # css
+				'td':td, # css
+				'tdh':tdh, # hover
+				'cs2':cs2,
+				'tt':tt, 
+				'ur1':ur1, 
+				'ur2':ur2, 
+				'v1':v1, 
+				'v2':v2, 
+				'fs':fs, 
+			})
 		else:
-			fs1 = def_bc(bc)
-			fs2 = def_bc(bc)
-		return render(request, 'f7/f7i.html', {
-			'd':d, # divisao
-			'tt':tt, 
-			'ur1':ur1, 
-			'ur2':ur2, 
-			'v1':v1, 
-			'v2':v2, 
-			'fs1':fs1, 
-			'fs2':fs2, 
-		})
+			if f7tp == 'tr1' or f7tp == 'd0t' or f7tp == 'im9':
+				fs1 = fs2 = ''
+			else:
+				fs1 = def_bc(bc)
+				fs2 = def_bc(bc)
+			return render(request, 'f7/f7i.html', {
+				'd':d, # divisao
+				'tt':tt, 
+				'ur1':ur1, 
+				'ur2':ur2, 
+				'v1':v1, 
+				'v2':v2, 
+				'fs1':fs1, 
+				'fs2':fs2, 
+			})
 
-def b9(request, f7tp, l8p, tp, a, b, c, d, e):
-	f7tp, l8p, tp, a, b, c, d, e = def_var(f7tp, l8p, tp, a, b, c, d, e)
+def b9(request, f7tp, v4r, l8p, f7, b9, a, b, c, d, e):
+	f7tp, v4r, l8p, f7, b9, a, b, c, d, e = def_var(f7tp, v4r, l8p, f7, b9, a, b, c, d, e)
+	ur1 = reverse('f7', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
 	tt = 'f7/b9/%s' % (f7tp)
-	ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-	rf = def_a(f7tp, a)
-	bg = def_bg(tp)
-	if f7tp == 'cs5':
-		td = def_bs(b, tp)
-		tdh = def_bs(b, tp)
-		return render(request, 'f7/b9.html', {
-			'b':bg, 
-			't':td, 
-			'th':tdh, 
-			'rf':rf, 
-			'tt':tt, 
-			'ur1':ur1, 
-		})
+	bg = ''
+	cs2 = ''
+	rf = def_a(f7tp, b9, a)
+	if f7tp == 'tr1':
+		bg = def_bg(v4r)
+		td = def_bs(b, v4r)
+		tdh = def_bs(b, v4r)
 	elif f7tp == 'd0t':
-		td = def_br(b, tp)
-		tdh = def_br(b, tp)
-		return render(request, 'f7/b9.html', {
-			'b':bg, 
-			't':td, 
-			'th':tdh, 
-			'rf':rf, 
-			'tt':tt, 
-			'ur1':ur1, 
-		})
+		bg = def_bg(v4r)
+		td = def_br(b, v4r)
+		tdh = def_br(b, v4r)
+	elif f7tp == 'im9':
+		td, tdh = def_img(v4r)
 	else:
-		if f7tp == 'im9':
-			bg = ''
-			td, tdh = def_img(tp)
-		else:
-			td = ''
-			tdh = def_bg(tp)
-		return render(request, 'f7/b9.html', {
-			'b':bg, 
-			't': td,
-			'th':tdh, # hover 
-			'rf':rf, # refresh
-			'tt':tt, 
-			'ur1':ur1, 
-		})
-
+		cs2, td, tdh = def_an3(a, b9, v4r)
+	return render(request, 'f7/b9.html', {
+		'b':bg, 
+		'td':td, 
+		'tdh':tdh, 
+		'cs2':cs2,
+		'rf':rf, 
+		'tt':tt, 
+		'ur1':ur1, 
+	})
+    
 # defs
-def def_var(f7tp, l8p, tp, a, b, c, d, e):
+def def_var(f7tp, v4r, l8p, f7, b9, a, b, c, d, e):
 	if f7tp == '':
 		f7tp = random.choice(d7tp)
-
+	if v4r == '':
+		if f7tp == 'im9':
+			v4r = random.choice(d7img)
+		else:
+			v4r = random.choice(d7cor)
+	if v4r == 'def':
+		v4r = def_xxx()
 	if l8p == '':
 		if f7tp == 'qd2':
-			l8p = random.choice([ '0', random.choice([ '0', '1' ]) ])
+			l8p = random.choice(['0', random.choice(d7o)])
 		else:
-			l8p = random.choice([ '0', random.choice(d7l8p) ])
-
-	if tp == '':
-		if f7tp == 'im9':
-			tp = random.choice(d7img)
+			l8p = random.choice(['0', random.choice(d7l8p)])
+	if f7 == '':
+		if f7tp == 'qd2':
+			f7 = '1'
 		else:
-			tp = random.choice(d7cor)
-
+			f7 = random.choice(d7x)
+	if b9 == '':
+		b9 = random.choice(d7o)
 	if a == '':
 		if f7tp == 'im9':
 			a = '0'
 		else:
-			a = random.choice([ 'x', random.choice(d7x) ])
-
+			a = random.choice(['x', random.choice(d7x)])
 	if b == '':
 		if f7tp == 'im9':
 			b = '0'
 		else:
 			b = random.choice(d7x)
-
 	if c == '': 
 		c = '0'
 	else:
 		c = str(int(c)+1)
-
 	if d == '':
 		if f7tp == 'qd2':
-			d = random.choice([ 'x', random.choice(d7d) ]) + random.choice([ 'x', random.choice(d7x) ])
+			d = random.choice(['x', random.choice(d7d)]) + random.choice(['x', random.choice(d7x)])
 		else:
-			d = random.choice([ 'x', random.choice(d7x) ])
-
+			d = random.choice(['x', random.choice(d7x)])
 	if e == '':
 		e = random.choice(d7x)
+	return f7tp, v4r, l8p, f7, b9, a, b, c, d, e
 
-	if tp == 'def':
-		tp = def_xxx()
-	if b[1:] == 'def':
-		b = b[0] + def_xxx()
-
-	return f7tp, l8p, tp, a, b, c, d, e
-
-def def_l8p(f7tp, l8p, tp, a, b, c, d, e):
+def def_l8p(f7tp, v4r, l8p, f7, b9, a, b, c, d, e):
 	if f7tp == 'qd2':
-		ur1 = ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
 		if l8p == '0':
-			ur2 = reverse('b9', args=(f7tp, l8p, tp, a, b, c, d, e))
-	else:
-		ur1 = ur2 = reverse('b9', args=(f7tp, l8p, tp, a, b, c, d, e))
-		if l8p == 'x':
-			if random.randint(0,1):
-				ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
-			else:
-				ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+			ur1 = reverse('f7', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
+			ur2 = reverse('b9', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
 		elif l8p == '1':
-			ur1 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+			ur1 = ur2 = reverse('f7', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
+	else:
+		if l8p == 'x':
+			l8p = random.choice(['1', '2'])
+		if l8p == '0':
+			ur1 = ur2 = reverse('b9', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
+		elif l8p == '1':
+			ur1 = reverse('f7', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
+			ur2 = reverse('b9', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
 		elif l8p == '2':
-			ur2 = reverse('f7', args=(f7tp, l8p, tp, a, b, c, d, e))
+			ur1 = reverse('b9', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
+			ur2 = reverse('f7', args=(f7tp, v4r, l8p, f7, b9, a, b, c, d, e))
 	return ur1, ur2
 
-def def_bg(tp):
-	cor = def_c0r(tp)
+def def_bg(v4r):
+	cor = def_c0r(v4r)
 	return 'background: %s;' % (def_rgb(cor))
 
-def def_img(tp):
-	tdh = '''-ms-transform: rotate(180deg); /* IE 9 */
-	-webkit-transform: rotate(180deg); /* Safari */
-	transform: rotate(180deg);'''
-	if tp[-3:] == 'gif':
-		bg = 'url(%s) no-repeat' % (tp)
+def def_img(v4r):
+	webkit = ''
+	tdh = '%stransform: rotate(180deg);' % (webkit)
+	if v4r[-3:] == 'gif':
+		bg = 'url(%s) no-repeat' % (v4r)
 		bgs = '100vw 100vh'
 	else:
-		bg = 'url(%s) no-repeat center fixed' % (tp)
+		bg = 'url(%s) no-repeat center fixed' % (v4r)
 		bgs = 'cover'
 	td = 'background: %s;\n\tbackground-size: %s;' % (bg, bgs)
 	return td, tdh
 
-def def_a(f7tp, a):
-	if a == '0':
-		return ''
-	elif a == '1':
-		return '0'
-	elif a == 'x':
-		if f7tp == 'qd2':
-			return str(random.randint(1,5))
-		else:
-			return str(random.randint(5,15))
+def def_an3(a, b9, v4r):
+	def stp(n):
+		stp = '\n\t%s  {%s}'
+		t = 100/(n+1)
+		s = ''
+		for i in range(n):
+			s += stp % (str(t*(i+1))+'%', def_bg(v4r))
+		return s
 
-def def_b(tp, b):
+	cs2 = ''
+	td = def_bg(v4r)
+	tdh = def_bg(v4r)
+	if b9 == '1':
+		webkit = ''
+		an3 = '\n\t%sanimation: %s %ss infinite;'
+		anm = '''
+@%skeyframes %s {%s
+}'''
+		if a == '1':
+			t = random.randint(5, 20)
+			cs2 += anm % (webkit, 'an3', stp(1))
+			td += an3 % (webkit, 'an3', str(t))
+			tdh += '\n\tanimation: 0;'
+		elif a == 'x':
+			n = random.randint(2,10)
+			t = random.randint(5, 15) * (n)
+			cs2 += anm % (webkit, 'an3', stp(n))
+			cs2 += anm % (webkit, 'an3h', stp(n))
+			td += an3 % (webkit, 'an3', str(t))
+			tdh += an3 % (webkit, 'an3h', '1')
+	return cs2, td, tdh
+
+def def_a(f7tp, b9, a):
+	rf = ''
+	if b9 == '0':
+		if a == '1':
+			rf = '0'
+		elif a == 'x':
+			if f7tp == 'qd2':
+				rf = str(random.randint(1,5))
+			else:
+				rf = str(random.randint(5,15))
+	return rf
+
+def def_b(v4r, b):
 	bc = ''
 	if b == 'x':
-		b = random.choice(['0', '1'])
+		b = random.choice(d7o)
 	if b == '1':
-		bc = def_c0r(tp, var = 1)
+		bc = def_c0r(v4r, tp = 1)
 	return b, bc
 
 def def_bc(bc):
@@ -286,10 +304,10 @@ def def_br(b, bc):
 	s += '\n\tbox-sizing: border-box;'
 	return s
 
-def def_d(f7tp, d):
+def def_d(f7, d):
 	if d == 'x':
-		d = random.choice(['0', '1'])
-	if f7tp == 'pi3t':
+		d = random.choice(d7o)
+	if f7 == '0':
 		if d == '0':
 			return 'rows'
 		else:
@@ -315,11 +333,8 @@ def def_e(f7tp, e):
 			# v1 = random.choice([38.1966, 61.8034])
 		elif e == 'x':
 		    v1 = random.randint(10, 90)
-		if f7tp == 'pi3t':
-			return str(v1) + '%', '*'
-		else:
-			v2 = 100-v1
-			return str(v1) + '%', str(v2) + '%'
+		v2 = 100-v1
+		return str(v1) + '%', str(v2) + '%'
 
 def def_f1(d, v1, v2, b, bc):
 	if b == '1':
@@ -367,30 +382,30 @@ def def_f2(d, v1, v2):
 		m1 = m1*2 - a1
 	return 'margin-left: %svw;\n\tmargin-top: %svh;' % (str(m1), str(m2))
 
-def def_c0r(tp, var = 0):
-	if var == 1: 
+def def_c0r(v4r, tp = 0):
+	if tp == 1: 
 		# cor borda
-		if tp == 'pb':
+		if v4r == 'pb':
 			cor = 'x'
-		elif tp == 'rgb':
+		elif v4r == 'rgb':
 			cor = '1'
-		elif tp == 'piet':
+		elif v4r == 'piet':
 			cor = '0'
-		elif tp == 'xxx':
-			cor = tp
+		elif v4r == 'xxx':
+			cor = v4r
 		else:
-			cor = random.choice(['0', '1'])
+			cor = random.choice(d7o)
 	else:
-		if tp == 'pb':
-			cor = random.choice(['0', '1'])
-		elif tp == 'rgb':
+		if v4r == 'pb':
+			cor = random.choice(d7o)
+		elif v4r == 'rgb':
 			cor = random.choice(['100', '010', '001', '0'])
-		elif tp == 'cmyx':
-			cor = random.choice(['011', '101', '110', random.choice(['0', '1']) ])
-		elif tp == 'piet':
+		elif v4r == 'cmyx':
+			cor = random.choice(['011', '101', '110', random.choice(d7o) ])
+		elif v4r == 'piet':
 			cor = random.choice(['1', random.choice(['100', '110', '001', '0']) ])
 		else:
-			cor = tp
+			cor = v4r
 	return cor
 
 def def_xxx():
@@ -432,7 +447,7 @@ def def_hxc(c):
 
 
 # variaveis
-# / f7 / f7tp + l8p / tp / a / b / c / d / e /
+# / f7 / f7tp + l8p / v4r / a / b / c / d / e /
 
 # f7tp = tipo
 	# d7tp
@@ -441,7 +456,7 @@ def def_hxc(c):
 	# 1 = l8p ur1
 	# 2 = l8p ur2
 	# x = l8p ur1/ur2
-# tp = cor/img
+# v4r = cor/img
 # a = atualiza
 	# 0 = nao atualiza
 	# 1 = 0s
@@ -462,19 +477,12 @@ def def_hxc(c):
 
 d7tp = [
 	'd0t', 
+	'tr1', # tr1 cs5 ss2 cs2 c5s
 	'qd2', # qd2 ht# josef jo5ef jos3f jose# j0sef
 	'pi3t', # frameset html0ldschool
+	# 'rg6', # iframe bg-color
 	# 'b4b_', # babe1 babe2 bab3l b4bel ba5el ba6el borges jorge jo-g3 b4_ b6_ b_abe1 ba_e1 b4b_ bbl bb1 b6_
-	'cs5', # cs5 css2 cs2 c5s
-	'rg6', # iframe bg-color
 	'im9', # iframe img
-]
-
-d7l8p = [
-	'0', 
-	'1', 
-	'2',
-	'x',
 ]
 
 d7img = [
@@ -493,12 +501,6 @@ d7cor = [
 		'def', # def_xxx
 ]
 
-d7x = [
-	'0',
-	'1',
-	'x',
-]
-
 d7d = [
 	'0', # centralizado
 	'1', # t l
@@ -512,10 +514,11 @@ d7d = [
 	'x', # aleatorio
 ]
 
-d7bb1 = [
-	'bbl',
-	'bb1',
-	'b6_',
-]
+d7o = ['0','1']
+
+d7x = d7o+['x']
+
+d7l8p = d7x+['2']
 
 d7l = ['underline', 'overline', 'line-through']
+

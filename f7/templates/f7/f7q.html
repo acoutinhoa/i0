@@ -5,10 +5,11 @@
 .frame {
 	{{ f|default:'' }}
 }
+{{ cs2|default:'' }}
 {% endblock %}
 
 {% block content %}
-<a href="{{ ur1 }}"><div id="tudo">
+<a href="{{ ur1 }}"><div>
 {% include "f7/f_.html" with ur1=ur2 w=v1 h=v2 fs=fs %}
 </div></a>
 {% endblock %}

@@ -4,11 +4,9 @@
 
 {% block style %}
 {% include 'f7/b_.css' %}
-{% if cs2 %}
-{{ cs2 }}
-{% endif %}
+{{ cs2|default:'' }}
 {% endblock %}
 
 {% block content %}
-<a href="{{ ur1 }}"><div id="tudo"></div></a>
+<a href="{{ ur1 }}"><div></div></a>
 {% endblock %}
