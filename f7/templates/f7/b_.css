@@ -3,14 +3,15 @@ body {
 	{{ b|default:'' }}
 }
 
-div {
+#tudo {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
 	{{ td|default:'' }}
 }
 
-div:hover {
+{% if tdh %}
+#tudo:hover {
 	{{ tdh|default:'' }}
 }
-
+{% endif %}

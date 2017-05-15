@@ -5,6 +5,6 @@
 	fs = ''		style da iframe
 {% endcomment %}
 
-<div class="frame" style="height:{{ h|default:'100%' }}; width: {{ w|default:'100%' }};">
-	<iframe src="{{ ur1 }}" target="_self" height="100%" width="100%" style="{{ fs|default:'border: none;' }}"></iframe>
+<div class="frame" style="height:{{ h|default:'100vh' }}; width:{{ w|default:'100vw' }};{{ s|default:'' }}">
+<iframe src="{{ ur1 }}" target="_self" height="100%" width="100%" style="{{ fs|default:'border:none;' }}"></iframe>
 </div>
