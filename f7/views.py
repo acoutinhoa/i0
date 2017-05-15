@@ -13,6 +13,11 @@ def f7(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 	tt = 'f7/%s' % (t2)
 	if l8p != '0':
 		tt += ' l8p'
+	if f7 != '0' and t2 == 'pi3t':
+		fs1 = def_b(b, v4r)
+		fs2 = def_b(b, v4r)
+	else:
+		fs1 = fs2 = ''
 	if f7 == '0':
 		f = def_f0(b, v4r, d, v1, v2)
 		return render(request, 'f7/f7.html', {
@@ -22,11 +27,6 @@ def f7(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 			'f7':f,
 		})
 	elif f7 == '1':
-		if t2 == 'pi3t':
-			fs1 = def_b(b, v4r)
-			fs2 = def_b(b, v4r)
-		else:
-			fs1 = fs2 = ''
 		return render(request, 'f7/f7i.html', {
 			'b':bg, 
 			'd':d,
@@ -40,11 +40,6 @@ def f7(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 		})
 	elif f7 == '2':
 		f = def_f2(d, v1, v2)
-		if t2 == 'pi3t':
-			fs1 = def_b(b, v4r)
-			fs2 = def_b(b, v4r)
-		else:
-			fs1 = fs2 = ''
 		return render(request, 'f7/f7q.html', {
 			'b':bg, 
 			'tt':tt, 
@@ -82,7 +77,7 @@ def def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 
 	if v4r == '':
 		if t2 == 'im9':
-			v4r = random.choice(d7im9)
+			v4r = random.choice(d7o)
 		else:
 			v4r = random.choice(d7cor)
 	if v4r == 'def':
@@ -168,6 +163,8 @@ def def_bg(v4r):
 	return 'background: %s;' % (def_rgb(cor))
 
 def def_im9(b, v4r):
+	if v4r == '0' or v4r == '1':
+		v4r = d7im9[int(v4r)]
 	if v4r[-3:] == 'gif':
 		bg = 'url(%s) no-repeat' % (v4r)
 		bgs = '100vw 100vh'
