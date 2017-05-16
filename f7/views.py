@@ -96,7 +96,10 @@ def def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 		a = random.choice(['x', random.choice(d7x)])
 
 	if b == '':
-		b = random.choice(d7x)
+		if t2 == 'im9':
+			b = random.choice(['x', random.choice(d7d)])
+		else:
+			b = random.choice(d7x)
 
 	if c == '': 
 		c = '0'
@@ -137,6 +140,10 @@ def def_l8p(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 			ur2 = reverse('f7', args=(t2, v4r, l8p, f7, b9, a, b, c, d, e))
 	return ur1, ur2
 
+def def_bg(v4r):
+	cor = def_c0r(v4r)
+	return 'background: %s;' % (def_rgb(cor))
+
 def def_b9bg(f7, t2, v4r, b):
 	bg = ''
 	if f7 == '0':
@@ -158,10 +165,6 @@ def def_f7bg(f7, t2, v4r, c):
 				bg = def_bg(v4r)
 	return bg
 
-def def_bg(v4r):
-	cor = def_c0r(v4r)
-	return 'background: %s;' % (def_rgb(cor))
-
 def def_im9(b, v4r):
 	if v4r == '0' or v4r == '1':
 		v4r = d7im9[int(v4r)]
@@ -178,36 +181,39 @@ def def_im9h(b):
 	tdh = ''
 	for i in range(len(webkit)):
 		tdh += '%stransform: rotate(180deg);' % (webkit[i])
-	if b == 'x':
-		tdh += def_fi1('1')
+	if b != '0':
+		tdh += def_fi1(b)
 	return tdh
 
 def def_fi1(b):
-	webkit = ['', '-webkit-',]
-	l = ['blur', 'brightness', 'contrast', 'grayscale', 'hue-rotate', 'invert', 'opacity', 'saturate', 'sepia', ] # 'drop-shadow'
-	fi1 = ''
-	if b == 'x':
-		b = random.randint(2,9)
-	else:
-		b = int(b)
-	for i in range(b):
-	    f = l.pop(random.randint(0, len(l)-1))
-	    if f == 'blur':
-	    	v = str(random.randint(1, 20)) + 'px'
-	    elif f == 'brightness' or f == 'contrast':
-	    	v = str(random.randint(10, 500)) + '%'
-	    elif f == 'grayscale' or f == 'sepia':
-	    	v = str(random.randint(10, 100)) + '%'
-	    elif f == 'hue-rotate':
-	    	v = random.choice(['','-']) + str(random.randint(10, 180)) + 'deg'
-	    elif f == 'invert':
-	    	v = '100%'
-	    elif f == 'opacity':
-	    	v = str(random.randint(10, 90)) + '%'
-	    elif f == 'saturate':
-	    	v = str(random.randint(10, 2000)) + '%'
-	    for i in range(len(webkit)):
-	    	fi1 += '\n\t%sfilter: %s(%s);' % (webkit[i], f, v)
+	fi1 = f1 = ''
+	if b != '0':
+		webkit = ['', '-webkit-',]
+		l = ['blur', 'brightness', 'contrast', 'grayscale', 'hue-rotate', 'invert', 'opacity', 'saturate', ] # 'sepia', 'drop-shadow'
+		if b == 'x':
+			n = random.randint(1,3)
+		else:
+			n = random.randint(1,2)
+		for i in range(n):
+			if b != 'x' and i == 0:
+			    f = l.pop(int(b)-1)
+			else:
+			    f = l.pop(random.randint(0, len(l)-1))
+			if f == 'blur':
+				v = str(random.randint(1, 50)/10) + 'vmin'
+			elif f == 'brightness' or f == 'contrast':
+				v = str(random.randint(10, 500)) + '%'
+			elif f == 'grayscale' or f == 'invert':
+				v = '1'
+			elif f == 'hue-rotate':
+				v = str(random.randint(0, 360)) + 'deg'
+			elif f == 'opacity':
+				v = str(random.randint(20, 100)) + '%'
+			elif f == 'saturate':
+				v = str(random.randint(10, 2000)) + '%'
+			f1 += ' %s(%s)' % (f, v)
+		for i in range(len(webkit)):
+			fi1 += '\n\t%sfilter: %s;' % (webkit[i], f1)
 	return fi1
 
 def def_an3(a, b, b9, v4r, t2):
