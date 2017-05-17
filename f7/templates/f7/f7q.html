@@ -8,12 +8,8 @@
 {% endblock %}
 
 {% block content %}
-<a href="{{ ur1 }}"><div id="tudo">
-{% include "f7/f_.html" with ur1=ur2 fs=fs1 only %}
-{% if l8p == '0' %}
-	{% include "f7/f_.html" with ur1=ur2 s=s w=v1 h=v2 fs=fs2 %}
-{% else %}
-	{% include "f7/f_.html" with ur1=ur1 s=s w=v1 h=v2 fs=fs2 %}
-{% endif %}
-</div></a>
+<div id="tudo">
+{% include "f7/f_.html" with ur1=ur1 fs=fs1 only %}
+{% include "f7/f_.html" with ur1=ur2 s=s w=v1 h=v2 fs=fs2 only %}
+</div>
 {% endblock %}
