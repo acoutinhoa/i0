@@ -8,9 +8,9 @@ def f7(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e)
 	ur1, ur2 = def_l8p(t2, v4r, l8p, f7, b9, a, b, c, d, e)
 	tt = 'f7/%s' % (t2)
-	if l8p != '0':
+	if l8p != '0' and t2 != 'kao8':
 		tt += ' l8p'
-	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_m1x(t2, v4r, l8p, f7, b9, a, b, c, d, e)
+	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_kao8(t2, v4r, l8p, f7, b9, a, b, c, d, e)
 	bg = def_f7bg(f7, t2, v4r, c)
 	v1, v2 = def_e(f7, e)
 	d = def_d(f7, d)
@@ -57,7 +57,7 @@ def f7(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 def b9(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e)
 	ur1 = reverse('f7', args=(t2, v4r, l8p, f7, b9, a, b, c, d, e))
-	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_m1x(t2, v4r, l8p, f7, b9, a, b, c, d, e)
+	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_kao8(t2, v4r, l8p, f7, b9, a, b, c, d, e)
 	tt = 'f7/b9/%s' % (t2)
 	rf = def_a(t2, b9, a)
 	bg = def_b9bg(f7, t2, v4r, b)
@@ -76,7 +76,7 @@ def b9(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 def def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 	if not t2:
 		t2 = random.choice(d7tp)
-	if t2 == 'm1x':
+	if t2 == 'kao8':
 		if not c: 
 			c = '0'
 		else:
@@ -120,14 +120,14 @@ def def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 			a = '0'
 		return t2, v4r, l8p, f7, b9, a, b, c, d, e
 
-def def_m1x(t2, v4r, l8p, f7, b9, a, b, c, d, e):
-	if t2 == 'm1x':
+def def_kao8(t2, v4r, l8p, f7, b9, a, b, c, d, e):
+	if t2 == 'kao8':
 		t2 = random.choice(d7tp[:-1])
 		t2, v4r, l8p, f7, b9, a, b, c, d, e = def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e)
 	return t2, v4r, l8p, f7, b9, a, b, c, d, e
 
 def def_l8p(t2, v4r, l8p, f7, b9, a, b, c, d, e):
-	if t2 == 'm1x':
+	if t2 == 'kao8':
 		lp = random.choice([0, random.randrange(3)])
 	else:
 		if l8p == 'x':
@@ -586,7 +586,7 @@ d7tp = [
 	'pi3t',
 	'd9d',
 	'im9', 
-	'm1x',
+	'kao8',
 ]
 
 d7im9 = [
