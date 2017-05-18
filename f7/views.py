@@ -285,68 +285,76 @@ def def_b(b, v4r):
 	return s
 
 def def_bs(b, v4r):
-    s = 'box-sizing: border-box;'
-    bs = ['border-top: %s;', 'border-bottom: %s;', 'border-left: %s;', 'border-right: %s;', ]
-    if b == '0':
-        cor = def_rgb(def_c0r(v4r))
-        u = 'vh'
-        n = 0
-        for i in range(2):
-            c = [cor, 'transparent']
-            bc0 = '50%s solid %s' % (u, c.pop(random.randint(0,1)))
-            bc1 = '50%s solid %s' % (u, c[0])
-            s += '\n\t' + bs[n] % (bc0)
-            s += '\n\t' + bs[n+1] % (bc1)
-            u = 'vw'
-            n = 2
-    elif b == '1':
-        u = 'vh'
-        for i in range(4):
-            bc0 = '50%s solid %s' % (u, def_rgb(def_c0r(v4r)))
-            s += '\n\t' + bs[i] % (bc0)
-            if i == 1: u = 'vw'
-    elif b == 'x':
-        u = 'vh'
-        n = 0
-        for i in range(2):
-            v1 = random.randint(20, 80)
-            v2 = 100-v1
-            bc0 = '%s%s solid %s' % (str(v1), u, def_rgb(def_c0r(v4r)))
-            bc1 = '%s%s solid %s' % (str(v2), u, def_rgb(def_c0r(v4r)))
-            s += '\n\t' + bs[n] % (bc0)
-            s += '\n\t' + bs[n+1] % (bc1)
-            u = 'vw'
-            n = 2
-    return s
+	s = 'box-sizing: border-box;'
+	bs = ['border-top: %s;', 'border-bottom: %s;', 'border-left: %s;', 'border-right: %s;', ]
+	if b == '0':
+		cor = def_rgb(def_c0r(v4r))
+		n = 0
+		u = 'vh'
+		for i in range(2):
+			c = [cor, 'transparent']
+			for j in range(2):
+				if not j: c0 = c.pop(random.randint(0,1))
+				else: c0 = c[0]
+				bc = '50%s solid %s' % (u, c0)
+				s += '\n\t' + bs[n] % (bc)
+				n += 1
+			u = 'vw'
+	elif b == '1':
+		u = 'vh'
+		for i in range(4):
+			if random.randrange(4): cor = def_rgb(def_c0r(v4r))
+			else: cor = 'transparent'
+			bc = '50%s solid %s' % (u, cor)
+			s += '\n\t' + bs[i] % (bc)
+			if i == 1: u = 'vw'
+	elif b == 'x':
+		n = 0
+		u = 'vh'
+		for i in range(2):
+			v1 = random.randint(20, 80)
+			v2 = 100-v1
+			for j in range(2):
+				if random.randrange(4): cor = def_rgb(def_c0r(v4r))
+				else: cor = 'transparent'
+				if not j: v = str(v1)
+				else: v = str(v2)
+				bc = '%s%s solid %s' % (v, u, cor)
+				s += '\n\t' + bs[n] % (bc)
+				n += 1
+			u = 'vw'
+	return s
 
 def def_br(b, v4r):
-    s = 'border-radius: 50%;'
-    bs = ['border-top: %s;', 'border-bottom: %s;', 'border-left: %s;', 'border-right: %s;', ]
-    if b == '0': s += '\n\tbackground: %s;' % (def_rgb(def_c0r(v4r)))
-    elif b == '1':
-    	s += '\n\tbox-sizing: border-box;'
-    	cor = def_rgb(def_c0r(v4r))
-    	u = 'vh'
-    	for i in range(4):
-            bc0 = '50%s solid %s' % (u, random.choice([cor, 'transparent']))
-            s += '\n\t' + bs[i] % (bc0)
-            if i == 1: u = 'vw'
-    elif b == 'x':
-    	s += '\n\tbox-sizing: border-box;'
-    	u = 'vh'
-    	n = 0
-    	for i in range(2):
-            v1 = random.randint(20, 80)
-            v2 = 100-v1
-            bc0 = '%s%s solid %s' % (str(v1), u, def_rgb(def_c0r(v4r)))
-            bc1 = '%s%s solid %s' % (str(v2), u, def_rgb(def_c0r(v4r)))
-            s += '\n\t' + bs[n] % (bc0)
-            s += '\n\t' + bs[n+1] % (bc1)
-            u = 'vw'
-            n = 2
-    return s
+	s = 'border-radius: 50%;'
+	bs = ['border-top: %s;', 'border-bottom: %s;', 'border-left: %s;', 'border-right: %s;', ]
+	if b == '0': s += '\n\tbackground: %s;' % (def_rgb(def_c0r(v4r)))
+	elif b == '1':
+		s += '\n\tbox-sizing: border-box;'
+		cor = def_rgb(def_c0r(v4r))
+		u = 'vh'
+		for i in range(4):
+			bc0 = '50%s solid %s' % (u, random.choice([cor, 'transparent']))
+			s += '\n\t' + bs[i] % (bc0)
+			if i == 1: u = 'vw'
+	elif b == 'x':
+		s += '\n\tbox-sizing: border-box;'
+		u = 'vh'
+		n = 0
+		for i in range(2):
+			v1 = random.randint(20, 80)
+			v2 = 100-v1
+			for j in range(2):
+				if random.randrange(4): cor = def_rgb(def_c0r(v4r))
+				else: cor = 'transparent'
+				if not j: v = str(v1)
+				else: v = str(v2)
+				bc = '%s%s solid %s' % (v, u, cor)
+				s += '\n\t' + bs[n] % (bc)
+				n += 1
+			u = 'vw'
+	return s
 
-    
 def def_c(c):
 	if not c: c = '0'
 	else: c = str(int(c)+1)
@@ -367,8 +375,8 @@ def def_e(f7, e):
 		if e == '0': v1 = v2 = 80
 		elif e == '1': v1 = v2 = 60
 		elif e == 'x':
-		    v1 = random.randint(50, 95)
-		    v2 = random.randint(50, 95)
+			v1 = random.randint(50, 95)
+			v2 = random.randint(50, 95)
 	else:
 		if e == '0': v1 = 50
 		elif e == '1': v1 = random.choice([40, 60]) # v1 = random.choice([38.1966, 61.8034])
