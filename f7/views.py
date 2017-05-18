@@ -73,9 +73,10 @@ def b9(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 # defs
 def def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 	c = def_c(c)
-	if not t2: t2 = random.choice(d7tp)
+	if not t2:
+		if random.randrange(10): t2 = random.choice(d7tp)
+		else: t2 = 'ka8s'
 	if t2 == 'ka8s':
-		v4r = l8p = f7 = b9 = a = b = d = e = ''
 		return t2, v4r, l8p, f7, b9, a, b, c, d, e
 	else:
 		if not v4r:
@@ -99,7 +100,8 @@ def def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 
 def def_ka8s(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 	if t2 == 'ka8s':
-		t2 = random.choice(d7tp[:-1])
+		t2 = random.choice(d7tp)
+		v4r = l8p = f7 = b9 = a = b = d = e = ''
 		t2, v4r, l8p, f7, b9, a, b, c, d, e = def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e)
 	return t2, v4r, l8p, f7, b9, a, b, c, d, e
 
@@ -375,8 +377,8 @@ def def_e(f7, e):
 		if e == '0': v1 = v2 = 80
 		elif e == '1': v1 = v2 = 60
 		elif e == 'x':
-			v1 = random.randint(50, 95)
-			v2 = random.randint(50, 95)
+		    v1 = random.randint(50, 95)
+		    v2 = random.randint(50, 95)
 	else:
 		if e == '0': v1 = 50
 		elif e == '1': v1 = random.choice([40, 60]) # v1 = random.choice([38.1966, 61.8034])
@@ -492,7 +494,6 @@ d7tp = [
 	'pi3t',
 	'd9d',
 	'im9', 
-	'ka8s',
 ]
 
 d7im9 = [
