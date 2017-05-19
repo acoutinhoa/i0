@@ -207,8 +207,8 @@ def def_fi1(b):
 			elif f == 'opacity': v = str(random.randint(20, 100)) + '%'
 			elif f == 'saturate': v = str(random.randint(10, 2000)) + '%'
 			f1 += ' %s(%s)' % (f, v)
-		for i in webkit: fi1 += '\n\t%sfilter: %s;' % (i, f1)
-	return fi1
+		for i in webkit: fi1 += '%sfilter:%s;' % (i, f1)
+	return '\n\t' + fi1
 
 def def_an3(a, b, b9, v4r, t2):
 	def stp(n):
