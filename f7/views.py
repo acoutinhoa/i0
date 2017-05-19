@@ -4,12 +4,12 @@ from django.urls import reverse
 import string
 import random
 
-def f7(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
-	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e)
+def f7(request, t2, v4r, f7, b9, l8p, a, b, c, d, e):
+	t2, v4r, f7, b9, l8p, a, b, c, d, e = def_var(t2, v4r, f7, b9, l8p, a, b, c, d, e)
 	tt = 'f7/%s' % (t2)
 	if l8p != '0' and t2 != 'ka8s': tt += ' l8p'
-	ur1, ur2 = def_l8p(t2, v4r, l8p, f7, b9, a, b, c, d, e)
-	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_ka8s(t2, v4r, l8p, f7, b9, a, b, c, d, e)
+	ur1, ur2 = def_l8p(t2, v4r, f7, b9, l8p, a, b, c, d, e)
+	t2, v4r, f7, b9, l8p, a, b, c, d, e = def_ka8s(t2, v4r, f7, b9, l8p, a, b, c, d, e)
 	bg = def_f7bg(f7, t2, v4r, c)
 	v1, v2 = def_e(f7, e)
 	d = def_d(f7, d)
@@ -52,10 +52,10 @@ def f7(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 			's':f,
 		})
 
-def b9(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
-	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e)
-	ur1 = reverse('f7', args=(t2, v4r, l8p, f7, b9, a, b, c, d, e))
-	t2, v4r, l8p, f7, b9, a, b, c, d, e = def_ka8s(t2, v4r, l8p, f7, b9, a, b, c, d, e)
+def b9(request, t2, v4r, f7, b9, l8p, a, b, c, d, e):
+	t2, v4r, f7, b9, l8p, a, b, c, d, e = def_var(t2, v4r, f7, b9, l8p, a, b, c, d, e)
+	ur1 = reverse('f7', args=(t2, v4r, f7, b9, l8p, a, b, c, d, e))
+	t2, v4r, f7, b9, l8p, a, b, c, d, e = def_ka8s(t2, v4r, f7, b9, l8p, a, b, c, d, e)
 	tt = 'f7/b9/%s' % (t2)
 	rf = def_a(t2, b9, a)
 	bg = def_b9bg(f7, t2, v4r, b)
@@ -71,21 +71,21 @@ def b9(request, t2, v4r, l8p, f7, b9, a, b, c, d, e):
 	})
 
 # defs
-def def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e):
+def def_var(t2, v4r, f7, b9, l8p, a, b, c, d, e):
 	c = def_c(c)
 	if not t2:
 		if random.randrange(10): t2 = random.choice(d7tp)
 		else: t2 = 'ka8s'
 	if t2 == 'ka8s':
-		return t2, v4r, l8p, f7, b9, a, b, c, d, e
+		return t2, v4r, f7, b9, l8p, a, b, c, d, e
 	else:
 		if not v4r:
 			if t2 == 'im9': v4r = random.choice(d7im9)
 			else: v4r = random.choice(d7cor)
 		if v4r == 'def': v4r = def_xxx()
-		if not l8p: l8p = random.choice(['0', random.choice(d7z)])
 		if not f7: f7 = random.choice(d7y)
 		if not b9: b9 = random.choice(d7o)
+		if not l8p: l8p = random.choice(['0', random.choice(d7z)])
 		if not a: a = random.choice(['x', random.choice(d7x)])
 		if not b:
 			if t2 == 'im9': b = random.choice(['x', random.choice(d7d)])
@@ -96,26 +96,26 @@ def def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e):
 			if f7 == '2': d += random.choice(['x', random.choice(d7d)])
 		if not e: e = random.choice(d7x)
 		if t2 == 'im9' and b == '0' and a != '0': a = '0'
-		return t2, v4r, l8p, f7, b9, a, b, c, d, e
+		return t2, v4r, f7, b9, l8p, a, b, c, d, e
 
-def def_ka8s(t2, v4r, l8p, f7, b9, a, b, c, d, e):
+def def_ka8s(t2, v4r, f7, b9, l8p, a, b, c, d, e):
 	if t2 == 'ka8s':
 		t2 = random.choice(d7tp)
 		v4r = l8p = f7 = b9 = a = b = d = e = ''
-		t2, v4r, l8p, f7, b9, a, b, c, d, e = def_var(t2, v4r, l8p, f7, b9, a, b, c, d, e)
-	return t2, v4r, l8p, f7, b9, a, b, c, d, e
+		t2, v4r, f7, b9, l8p, a, b, c, d, e = def_var(t2, v4r, f7, b9, l8p, a, b, c, d, e)
+	return t2, v4r, f7, b9, l8p, a, b, c, d, e
 
-def def_l8p(t2, v4r, l8p, f7, b9, a, b, c, d, e):
+def def_l8p(t2, v4r, f7, b9, l8p, a, b, c, d, e):
 	if t2 == 'ka8s': lp = random.choice([0, random.randrange(3)])
 	else:
 		if l8p == 'x': lp = random.randint(random.randrange(2), 2)
 		else: lp = int(l8p)
-	ur1 = reverse('b9', args=(t2, v4r, l8p, f7, b9, a, b, c, d, e))
+	ur1 = reverse('b9', args=(t2, v4r, f7, b9, l8p, a, b, c, d, e))
 	if lp == 0: ur2 = ur1
 	elif lp == 1 and f7 != '2':
 		ur2 = ur1
-		ur1 = reverse('f7', args=(t2, v4r, l8p, f7, b9, a, b, c, d, e))
-	else: ur2 = reverse('f7', args=(t2, v4r, l8p, f7, b9, a, b, c, d, e))
+		ur1 = reverse('f7', args=(t2, v4r, f7, b9, l8p, a, b, c, d, e))
+	else: ur2 = reverse('f7', args=(t2, v4r, f7, b9, l8p, a, b, c, d, e))
 	return ur1, ur2
 
 def def_d9d(b, v4r):
@@ -388,10 +388,10 @@ def def_e(f7, e):
 
 def def_f0(b, v4r, d, v1, v2):
 	b = b[0]
-	if b == 'x': b = random.choice(d7o)
+	if b not in d7o: b = random.choice(d7o)
 	if b == '0': 
 		return '%s="%s,%s" frameborder="0"' % (d, v1, v2)
-	else:
+	elif b == '1': 
 		bc = def_hxc(def_c0r(v4r, tp = 1))
 		return '%s="%s,%s" frameborder="1" border="10" bordercolor="%s"' % (d, v1, v2, bc)
 
@@ -439,7 +439,7 @@ def def_c0r(v4r, tp = 0):
 		if v4r == 'pb': cor = random.choice(d7o)
 		elif v4r == 'rgb': cor = random.choice(['100', '010', '001', '0'])
 		elif v4r == 'cmyx': cor = random.choice(['011', '101', '110', random.choice(d7o) ])
-		elif v4r == 'piet': cor = random.choice(['1', random.choice(['100', '110', '001', '0']) ])
+		elif v4r == 'piet': cor = random.choice(['1', '100', '110', '001', '1', '0'])
 		else: cor = v4r
 	return cor
 
@@ -477,11 +477,13 @@ def def_hxc(c):
 
 
 # variaveis
-# /f7/t2=/v4r=/l8p=/f7=/b9=/a=/b=/c=/d=/e=/
+# -/t2=/v4r=/f7=/b9=/l8p=/a=/b=/c=/d=/e=/
 
 # t2 = tipo
-# l8p = loop
 # v4r = cor/im9
+# f7 = organizacao dos frames
+# b9 = tipo de bg
+# l8p = loop
 # a = atualiza/animacao
 # b = borda/filtro/degrade
 # c = contador
