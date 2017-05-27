@@ -1,12 +1,12 @@
 {% extends 'f7/b_.html' %}
 
-{% block refresh %}<meta http-equiv="refresh" content="{{ rf }}">{% endblock %}
+{% block refresh %}
+<meta http-equiv="refresh" content="{{ rf }}">{% endblock %}
 
 {% block style %}
-{% include 'f7/b_.css' %}
-{{ cs2|default:'' }}
+{% include 'f7/b_.css' %}{{ cs2 }}
 {% endblock %}
 
 {% block content %}
-<a href="{{ ur1 }}"><div id="tudo"></div></a>
+<a href="{{ ur1 }}"><div></div></a>
 {% endblock %}

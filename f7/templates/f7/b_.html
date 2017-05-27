@@ -1,11 +1,8 @@
-{% load staticfiles %}
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8">{% block refresh %}{% endblock %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-{% block refresh %}{% endblock %}
 <title>{{ tt }}</title>
 <style type="text/css">{% block style %}{% endblock %}
 </style>

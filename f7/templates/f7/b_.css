@@ -1,17 +1,16 @@
 body {
 	margin: 0;
-	{{ b|default:'' }}
+	{{ b }}
 }
 
-#tudo {
+div {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
-	{{ td|default:'' }}
+	{{ td }}
 }
-
 {% if tdh %}
-#tudo:hover {
-	{{ tdh|default:'' }}
+div:hover {
+	{{ tdh }}
 }
 {% endif %}

@@ -1,3 +1,5 @@
 from django.contrib import admin
+from f7.models import *
 
-# Register your models here.
+admin.site.register(F7)
+admin.site.register(T2)

@@ -1,0 +1,38 @@
+body {
+	margin: 0;
+	background: black;
+	color: white;
+	font-family: monospace;
+	font-size: 12px;
+}
+div {
+	position: relative;
+	padding: 10vw;
+	width: 100%;
+	box-sizing: border-box;	
+}
+a:link, a:visited, a:active {
+	color: black;
+}
+a:hover {
+	color: white;
+}
+.b0 {
+	float: left;
+	padding: 40px 20px 20px 10px;
+	font-size: 14px;
+}
+.b1 {
+	float: left;
+	background: white;
+	padding: 5px;
+	width: auto;
+}
+.b1:hover {
+	background: {{ c2 }};
+	padding: 5px;
+}
+.bs {
+	background: {{ c1 }};
+}
+
