@@ -1,0 +1,17 @@
+{% extends 'i0/b_.html' %}
+
+{% block style %}
+{{ cs2 }}
+{% endblock %}
+
+{% block content %}
+<table>
+{% for i in pda %}
+<tr>
+<th>{{ i.tipo.nome }}</th>
+<th>{{ i.peso }}</th>
+<th>{{ i.nome }}</th>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

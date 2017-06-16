@@ -1,4 +1,4 @@
-{% extends 'f7/b_.html' %}
+{% extends 'i0/b_.html' %}
 
 {% block style %}
 {% include 'm3/b_.css' %}{{ cs2 }}
@@ -8,36 +8,29 @@
 <div>
 {{ html|safe }}
 </div>
-{% endblock %}
 
-{% comment %}
-<div>
-{% for t in t2 %}
-	<div class="b b0">{{ t.n3 }}</div>
-	{% for f in t.f7_set.all %}
-		{% ifchanged %}<div class="b b1">{{ f.n3 }}</div>{% endifchanged %}
-	{% endfor %}
-{% endfor %}
-</div>
-{% for t in t2 %}
-	{{ t.n3 }}<br>
-	<ol>
-	{% for f in t.f7_set.all %}
-		{% ifchanged %}<li>{{ f.n3 }}{% endifchanged %}
-		{% if f.r1 %}
-			{% regroup f.r1.all|dictsort:"t2.n3" by t2.n3 as r_l %}
-			<ol>
-			{% for rt2,rall in r_l %}
-				<li>{{ rt2 }}</li><ol>
-				{% for r in rall %}
-					<li>{{ r.n3 }}</li>
-				{% endfor %}
-				</ol>
-			{% endfor %}
-			</ol>
-		{% endif %}
-		</li>
-	{% endfor %}
-	</ol>
-{% endfor %}
-{% endcomment %}
+<script>
+function an8(nome, tipo) {
+	var b = document.getElementsByClassName(nome);
+	var i;
+	for (i = 0; i < b.length; i++) {
+		if (tipo == 'an8') {
+			b[i].style.animation = randint(1, 3) + "s an8 infinite";
+		}
+		if (tipo == 'ka8s') {
+			b[i].style.animation = randint(1, 10) + "s ka8s infinite";
+		}
+	}
+}
+function an0(nome) {
+	var b = document.getElementsByClassName(nome);
+	var i;
+	for (i = 0; i < b.length; i++) {
+    	b[i].style.animation = 0;
+	}
+}
+function randint(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+</script>
+{% endblock %}

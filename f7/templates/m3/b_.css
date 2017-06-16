@@ -1,38 +1,49 @@
 body {
 	margin: 0;
 	background: black;
-	color: white;
 	font-family: monospace;
-	font-size: 12px;
 }
 div {
 	position: relative;
-	padding: 10vw;
 	width: 100%;
+	padding: 20px;
 	box-sizing: border-box;	
 }
-a:link, a:visited, a:active {
-	color: black;
-}
-a:hover {
+.b0, b0:link, b0:visited, b0:active {
+	float: left;
+	width: auto;
+	padding: 10px;
+	font-size: 13px;
 	color: white;
 }
-.b0 {
-	float: left;
-	padding: 40px 20px 20px 10px;
-	font-size: 14px;
+.b0:hover {
+	background: white;
+	color: black;
 }
-.b1 {
+.b1, b1:link, b1:visited, b1:active {
 	float: left;
 	background: white;
-	padding: 5px;
 	width: auto;
+	padding: 5px;
+	color: black;
+	font-size: 11px;
 }
 .b1:hover {
 	background: {{ c2 }};
-	padding: 5px;
+	color: white;
 }
 .bs {
 	background: {{ c1 }};
 }
-
+@-webkit-keyframes an8 {
+50.0%  {background: {{ c2 }}; color: white;}
+}
+@keyframes an8 {
+50.0%  {background: {{ c2 }}; color: white;}
+}
+@-webkit-keyframes ka8s {
+50.0%  {background: {{ c1 }};}
+}
+@keyframes ka8s {
+50.0%  {background: {{ c1 }};}
+}
