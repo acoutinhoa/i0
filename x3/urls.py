@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'', include('i0.urls')),
     url(r'^f7/', include('f7.urls')),
     url(r'^m8/', include('m8.urls')),
+    url(r'^e4/', include('e4.urls')),
 ]

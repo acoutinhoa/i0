@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'i0',
     'f7',
     'm8',
+    'e4',
 ]
 
 MIDDLEWARE = [
