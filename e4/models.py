@@ -2,22 +2,23 @@ from django.db import models
 
 # autores
 class A1(models.Model):
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now=True)
 	n0 = models.CharField('nome', max_length=50)
-	i0 = models.TextField()
+	i0 = models.TextField('info')
 	def __str__(self):
 		return self.n0[:10]
 
 # diretores
 class D1(models.Model):
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now=True)
 	n0 = models.CharField('nome', max_length=50)
 	def __str__(self):
 		return self.n0[:10]
 
 # filmes
 class F1(models.Model):
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now=True)
+	dx = models.DateTimeField(auto_now=True)
 	n0 = models.CharField('titulo',max_length=100)
 	diretores = models.ManyToManyField(D1)
 	ano = models.CharField(max_length=4)
@@ -30,7 +31,7 @@ class F1(models.Model):
 
 # formatos
 class F0(models.Model):
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now = True)
 	un = models.CharField(max_length=2, choices=[('mm','mm'),('px','px')], default='mm')
 	w = models.CharField('largura', max_length=10)
 	h = models.CharField('altura', max_length=10)
@@ -39,7 +40,7 @@ class F0(models.Model):
 
 # texto informacao
 class T0(models.Model): 
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now = True)
 	n0 = models.CharField('nome', max_length=30)
 	txt = models.TextField('txts(info/linha)')
 	def __str__(self):
@@ -47,7 +48,7 @@ class T0(models.Model):
 
 # logos
 class I0(models.Model):
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now = True)
 	n0 = models.CharField('nome', max_length=30)
 	# imagem =
 	def __str__(self):
@@ -55,7 +56,7 @@ class I0(models.Model):
 
 # textos
 class T3(models.Model):
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now = True)
 	filme = models.ForeignKey(F1)
 	autor = models.ForeignKey(A1)
 
@@ -68,14 +69,14 @@ class T3(models.Model):
 
 # imagens
 class I3(models.Model): 
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now = True)
 	filme = models.ForeignKey(F1)
 	creditos = models.CharField(max_length=200)
 	# imagem = 
 
 # blocos_grupos_ordem_organizacao
 class B1(models.Model):
-	d0 = models.DateTimeField(auto_now_add = True)
+	d0 = models.DateTimeField(auto_now = True)
 	n0 = models.CharField('nome_grupo', max_length=100)
 
 	informacoes = models.ManyToManyField(T0, blank=True)
@@ -100,8 +101,8 @@ class B1(models.Model):
 
 # materiais
 class M4(models.Model):
+	d0 = models.DateTimeField(auto_now = True)
 	n0 = models.CharField('nome', max_length=30)
-	d0 = models.DateTimeField(auto_now_add = True)
 
 	formatos = models.ManyToManyField(F0, through='P3', through_fields=('material','formato'), blank=True)
 	# blocos = models.ManyToManyField(B10, through='O0', through_fields=('material','bloco'), blank=True)
@@ -113,6 +114,7 @@ class M4(models.Model):
 
 # pecas graficas
 class P3(models.Model):
+	d0 = models.DateTimeField(auto_now = True)
 	material = models.ForeignKey(M4)
 	formato = models.ForeignKey(F0)
 	q = models.CharField('quantidade', max_length=10)
