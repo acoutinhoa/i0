@@ -85,6 +85,9 @@ class B1(models.Model):
 	imagens = models.ManyToManyField(I3, blank=True)
 	blocos = models.ManyToManyField('self', blank=True)
 
+	def __str__(self):
+		return self.n0
+
 # # organizacao
 # class O0(models.Model):
 # 	material = models.ForeignKey(M4)	
