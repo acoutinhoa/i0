@@ -1,8 +1,8 @@
 *.pyc
 *~
 __pycache__
-db.sqlite3
 s2
+db.sqlite3 
 /static
 /media
 .DS_Store
