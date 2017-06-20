@@ -51,27 +51,27 @@ def def_m3(t2, v4r, l8p, f7, b9, a, b, c, d):
 			html += '\n\t<a href="%s" target="_parent" onmouseover="an8(%s, %s)" onmouseout="an0(%s)">\n\t<div id="%s" class="b0">?</div></a>' % (ur1, "'b1'", "'an8'", "'b1'", nome)
 			cs8 = def_bt3(nome, div = '#')
 
-		h = '\n\t<div id="%s" class="b0">%s</div>' % (t.n3, t.n3)
+		h = '\n\t<div id="%s" class="b0">%s</div>' % (t.n0, t.n0)
 		ur1 = var[:]
 		ur1[i] = ''
 		ur1 = reverse('f7m3', args=(ur1))
-		nome = "'%s'" % (t.n3)
+		nome = "'%s'" % (t.n0)
 		html += '\n\t<a href="%s" target="_parent" onmouseover="an8(%s, %s)" onmouseout="an0(%s)">%s</a>' % (ur1, nome, "'an8'", nome, h)
-		cs2 += def_bt3(t.n3, div = '#')
+		cs2 += def_bt3(t.n0, div = '#')
 		for f in t.f7_set.all():
 			ur1 = var[:]
-			if '.' in f.n3:
-				nome = f.n3.split('.')
+			if '.' in f.n0:
+				nome = f.n0.split('.')
 				nome = nome[-1]
-			else: nome = f.n3
-			nome = '%s_%s' % (t.n3, nome)
-			if f.n3 == var[i]:
-				h = '\n\t<div class="b1 bs %s %s">%s</div>' % (nome, t.n3, f.n3)
+			else: nome = f.n0
+			nome = '%s_%s' % (t.n0, nome)
+			if f.n0 == var[i]:
+				h = '\n\t<div class="b1 bs %s %s">%s</div>' % (nome, t.n0, f.n0)
 			else:
-				h = '\n\t<div class="b1 %s %s">%s</div>' % (nome, t.n3, f.n3)
-				ur1[i] = f.n3
+				h = '\n\t<div class="b1 %s %s">%s</div>' % (nome, t.n0, f.n0)
+				ur1[i] = f.n0
 			ur1 = reverse('f7m3', args=(ur1))
-			# ur1 += '#%s' % (t.n3)
+			# ur1 += '#%s' % (t.n0)
 			html += '\n\t<a href="%s" target="_parent">%s</a>' % (ur1, h)
 			cs2 += def_bt3(nome)
 	return html, cs2 + cs8
@@ -245,7 +245,7 @@ def b9(request, t2='', v4r='', l8p='', f7='', b9='', a='', b='', c='', d='', n='
 # 			cor.append(c)
 # 			c = ''
 # for c in cor:
-# 	if 'x' in c and not v4r.f7_set.filter(n3=c).first():
+# 	if 'x' in c and not v4r.f7_set.filter(n0=c).first():
 # 		c
 
 
@@ -266,16 +266,16 @@ def def_var(t2, v4r, l8p, f7, b9, a, b, c, d):
 		else:
 			if r1:
 				r = var[r1.id-1]
-				v = r.r1.filter(t2=t).filter(n3=var[i]).first()
+				v = r.r1.filter(t2=t).filter(n0=var[i]).first()
 			else:
-				v = t.f7_set.filter(n3=var[i]).first()
+				v = t.f7_set.filter(n0=var[i]).first()
 			if v:
 				var[i] = v
 			else:
 				return 'ka8s', v4r, l8p, f7, b9, a, b, c, d
 	l =[]
 	for i in var: 
-		l.append(i.n3)
+		l.append(i.n0)
 	return l
 
 def def_l8p(t2, v4r, l8p, f7, b9, a, b, c, d, n):
@@ -347,8 +347,9 @@ def def_d9d(b, v4r):
 	return bg
 
 def def_im9(b, v4r):
-	t2 = F7.objects.get(n3='im9').r1.filter(t2__n3='v4r')
-	if F7.objects.get(n3=v4r) in t2: v4r = '/static/f7/%s' % (v4r)
+	t2 = F7.objects.get(n0='im9').r1.filter(t2__n0='v4r')
+	v4r = F7.objects.get(n0=v4r)
+	if v4r in t2: v4r = v4r.img.url
 	if v4r[-3:] == 'gif':
 		bg = 'url(%s) no-repeat' % (v4r)
 		bgs = '100vw 100vh'
