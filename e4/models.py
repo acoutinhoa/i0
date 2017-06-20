@@ -1,5 +1,7 @@
 from django.db import models
 
+##############################################
+
 # autores
 class A1(models.Model):
 	d0 = models.DateTimeField(auto_now=True)
@@ -18,16 +20,45 @@ class D1(models.Model):
 # filmes
 class F1(models.Model):
 	d0 = models.DateTimeField(auto_now=True)
-	dx = models.DateTimeField(auto_now=True)
 	n0 = models.CharField('titulo',max_length=100)
-	diretores = models.ManyToManyField(D1)
-	ano = models.CharField(max_length=4)
-	sinopse = models.TextField()
+	t0 = models.CharField('titulo_original',max_length=100, blank=True, null=True)
+	diretores = models.ManyToManyField(D1, blank=True)
+	ano = models.CharField(max_length=4, blank=True, null=True)
+	sinopse = models.TextField(blank=True, null=True)
 	duracao = models.CharField(max_length=10, blank=True, null=True)
 	cor = models.CharField(max_length=20, blank=True, null=True)
 	formato = models.CharField(max_length=20, blank=True, null=True)
 	def __str__(self):
 		return self.n0[:10]
+
+# textos
+class T1(models.Model):
+	d0 = models.DateTimeField(auto_now = True)
+	filme = models.ForeignKey(F1)
+	autor = models.ForeignKey(A1)
+
+	tt = models.CharField('titulo', max_length=30)
+	cit = models.TextField('citacao(info/linha)') # notas
+	txt = models.TextField('txt') # notas
+	ref = models.TextField('referencia/linha')
+	def __str__(self):
+		return self.tt[:10]
+
+# imagens
+class I1(models.Model):
+	def def_caminho(instance, filename):
+		return 'e4/i1/{0}/{1}'.format(instance.filme.n0, filename)
+
+	d0 = models.DateTimeField(auto_now = True)
+	filme = models.ForeignKey(F1, blank=True, null=True)
+	creditos = models.CharField(max_length=200, blank=True, null=True)
+	img = models.ImageField(upload_to=def_caminho, height_field='h', width_field='w', blank=True, null=True)
+	w = models.CharField(max_length=10, editable=False)
+	h = models.CharField(max_length=10, editable=False)
+	def __str__(self):
+		return '%s_%s' % (self.filme.n0, self.id)
+
+##############################################
 
 # formatos
 class F0(models.Model):
@@ -37,6 +68,35 @@ class F0(models.Model):
 	h = models.CharField('altura', max_length=10)
 	def __str__(self):
 		return '%s_%s_%s' % (self.un, self.w, self.h)
+
+# materiais
+class M0(models.Model):
+	d0 = models.DateTimeField(auto_now = True)
+	n0 = models.CharField('nome', max_length=30)
+
+	formatos = models.ManyToManyField(F0, through='P0', through_fields=('material','formato'), blank=True)
+	# blocos = models.ManyToManyField(B00, through='O0', through_fields=('material','bloco'), blank=True)
+
+	obs = models.TextField('obss', blank=True, null=True)
+
+	def __str__(self):
+		return self.n0
+
+# pecas graficas
+class P0(models.Model):
+	d0 = models.DateTimeField(auto_now = True)
+	material = models.ForeignKey(M0)
+	formato = models.ForeignKey(F0)
+	q = models.CharField('quantidade', max_length=10)
+	verso = models.BooleanField('frenteverso')
+	papel = models.CharField(max_length=30, blank=True, null=True)
+	gramatura = models.CharField(max_length=10, blank=True, null=True)
+	obs = models.TextField('obss', blank=True, null=True)
+
+	def __str__(self):
+		return '%s_%s' % (self.material.n0, self.formatopeca)
+	class Meta:
+		ordering = ['material', 'formato']
 
 # texto informacao
 class T0(models.Model): 
@@ -50,39 +110,19 @@ class T0(models.Model):
 class I0(models.Model):
 	d0 = models.DateTimeField(auto_now = True)
 	n0 = models.CharField('nome', max_length=30)
-	# imagem =
+	imagem = models.ImageField(upload_to='e4/i0', height_field='h', width_field='w', blank=True, null=True)
 	def __str__(self):
 		return self.n0
-
-# textos
-class T3(models.Model):
-	d0 = models.DateTimeField(auto_now = True)
-	filme = models.ForeignKey(F1)
-	autor = models.ForeignKey(A1)
-
-	tt = models.CharField('nome', max_length=30)
-	cit = models.TextField('citacao(info/linha)') # notas
-	txt = models.TextField('txt') # notas
-	ref = models.TextField('referencia/linha')
-	def __str__(self):
-		return self.n0
-
-# imagens
-class I3(models.Model): 
-	d0 = models.DateTimeField(auto_now = True)
-	filme = models.ForeignKey(F1)
-	creditos = models.CharField(max_length=200)
-	# imagem = 
 
 # blocos_grupos_ordem_organizacao
-class B1(models.Model):
+class B0(models.Model):
 	d0 = models.DateTimeField(auto_now = True)
 	n0 = models.CharField('nome_grupo', max_length=100)
 
 	informacoes = models.ManyToManyField(T0, blank=True)
 	logos = models.ManyToManyField(I0, blank=True)
-	textos = models.ManyToManyField(T3, blank=True)
-	imagens = models.ManyToManyField(I3, blank=True)
+	textos = models.ManyToManyField(T1, blank=True)
+	imagens = models.ManyToManyField(I1, blank=True)
 	blocos = models.ManyToManyField('self', blank=True)
 
 	def __str__(self):
@@ -90,8 +130,8 @@ class B1(models.Model):
 
 # # organizacao
 # class O0(models.Model):
-# 	material = models.ForeignKey(M4)	
-# 	bloco = models.ForeignKey(B10)
+# 	material = models.ForeignKey(M0)	
+# 	bloco = models.ForeignKey(B0)
 # 	ordem = models.IntegerField(default=0)
 
 # 	def reordem(self, n):
@@ -102,32 +142,4 @@ class B1(models.Model):
 # 	class Meta:
 # 		ordering = ['material', 'pk+ordem']
 
-# materiais
-class M4(models.Model):
-	d0 = models.DateTimeField(auto_now = True)
-	n0 = models.CharField('nome', max_length=30)
-
-	formatos = models.ManyToManyField(F0, through='P3', through_fields=('material','formato'), blank=True)
-	# blocos = models.ManyToManyField(B10, through='O0', through_fields=('material','bloco'), blank=True)
-
-	obs = models.TextField('obss', blank=True, null=True)
-
-	def __str__(self):
-		return self.n0
-
-# pecas graficas
-class P3(models.Model):
-	d0 = models.DateTimeField(auto_now = True)
-	material = models.ForeignKey(M4)
-	formato = models.ForeignKey(F0)
-	q = models.CharField('quantidade', max_length=10)
-	verso = models.BooleanField('frenteverso')
-	papel = models.CharField(max_length=30, blank=True, null=True)
-	gramatura = models.CharField(max_length=10, blank=True, null=True)
-	obs = models.TextField('obss', blank=True, null=True)
-
-	def __str__(self):
-		return '%s_%s' % (self.material.n0, self.formato.un)
-	class Meta:
-		ordering = ['material', 'formato']
 
