@@ -94,7 +94,7 @@ class P0(models.Model):
 	obs = models.TextField('obss', blank=True, null=True)
 
 	def __str__(self):
-		return '%s_%s' % (self.material.n0, self.formatopeca)
+		return '%s_%s' % (self.material.n0, self.formato)
 	class Meta:
 		ordering = ['material', 'formato']
 
@@ -110,7 +110,9 @@ class T0(models.Model):
 class I0(models.Model):
 	d0 = models.DateTimeField(auto_now = True)
 	n0 = models.CharField('nome', max_length=30)
-	imagem = models.ImageField(upload_to='e4/i0', height_field='h', width_field='w', blank=True, null=True)
+	img = models.ImageField(upload_to='e4/i0', height_field='h', width_field='w', blank=True, null=True)
+	w = models.CharField(max_length=10, editable=False)
+	h = models.CharField(max_length=10, editable=False)
 	def __str__(self):
 		return self.n0
 
