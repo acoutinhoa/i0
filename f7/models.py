@@ -17,7 +17,7 @@ class F7(models.Model):
 
 	d0 = models.DateTimeField(auto_now = True)
 	n0 = models.CharField(max_length=30)
-	t2 = models.ForeignKey(T2)
+	t2 = models.ForeignKey(T2, on_delete=models.CASCADE)
 	r1 = models.ManyToManyField('self', blank=True)
 	# r1 = models.ManyToManyField('self', blank=True, symmetrical=False)
 	img = models.ImageField(upload_to=def_caminho, height_field='h', width_field='w', blank=True, null=True)

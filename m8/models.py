@@ -27,12 +27,12 @@ class T2(models.Model):
 		ordering = ['?']
 
 class M8(models.Model):
-	tipo = models.ForeignKey(T2, blank=True, null=True)
+	tipo = models.ForeignKey(T2, on_delete=models.CASCADE, blank=True, null=True)
 	nome = models.CharField(max_length=50, blank=True, null=True)
 	cor = models.ManyToManyField(C0, blank=True)
 	peso = models.FloatField()
-	casa = models.ForeignKey(E1, blank=True, null=True)
-	caixa = models.ForeignKey(C4, blank=True, null=True)
+	casa = models.ForeignKey(E1, on_delete=models.CASCADE, blank=True, null=True)
+	caixa = models.ForeignKey(C4, on_delete=models.CASCADE, blank=True, null=True)
 
 	def __str__(self):
 		return '%s_%s' % (self.pk, self.nome)

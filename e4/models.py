@@ -34,8 +34,8 @@ class F1(models.Model):
 # textos
 class T1(models.Model):
 	d0 = models.DateTimeField(auto_now = True)
-	filme = models.ForeignKey(F1)
-	autor = models.ForeignKey(A1)
+	filme = models.ForeignKey(F1, on_delete=models.CASCADE)
+	autor = models.ForeignKey(A1, on_delete=models.CASCADE)
 
 	tt = models.CharField('titulo', max_length=30)
 	cit = models.TextField('citacao(info/linha)') # notas
@@ -50,7 +50,7 @@ class I1(models.Model):
 		return 'e4/i1/{0}/{1}'.format(instance.filme.n0, filename)
 
 	d0 = models.DateTimeField(auto_now = True)
-	filme = models.ForeignKey(F1, blank=True, null=True)
+	filme = models.ForeignKey(F1, on_delete=models.CASCADE, blank=True, null=True)
 	creditos = models.CharField(max_length=200, blank=True, null=True)
 	img = models.ImageField(upload_to=def_caminho, height_field='h', width_field='w', blank=True, null=True)
 	w = models.CharField(max_length=10, editable=False)
@@ -59,44 +59,6 @@ class I1(models.Model):
 		return '%s_%s' % (self.filme.n0, self.id)
 
 ##############################################
-
-# formatos
-class F0(models.Model):
-	d0 = models.DateTimeField(auto_now = True)
-	un = models.CharField(max_length=2, choices=[('mm','mm'),('px','px')], default='mm')
-	w = models.CharField('largura', max_length=10)
-	h = models.CharField('altura', max_length=10)
-	def __str__(self):
-		return '%s_%s_%s' % (self.un, self.w, self.h)
-
-# materiais
-class M0(models.Model):
-	d0 = models.DateTimeField(auto_now = True)
-	n0 = models.CharField('nome', max_length=30)
-
-	formatos = models.ManyToManyField(F0, through='P0', through_fields=('material','formato'), blank=True)
-	# blocos = models.ManyToManyField(B00, through='O0', through_fields=('material','bloco'), blank=True)
-
-	obs = models.TextField('obss', blank=True, null=True)
-
-	def __str__(self):
-		return self.n0
-
-# pecas graficas
-class P0(models.Model):
-	d0 = models.DateTimeField(auto_now = True)
-	material = models.ForeignKey(M0)
-	formato = models.ForeignKey(F0)
-	q = models.CharField('quantidade', max_length=10)
-	verso = models.BooleanField('frenteverso')
-	papel = models.CharField(max_length=30, blank=True, null=True)
-	gramatura = models.CharField(max_length=10, blank=True, null=True)
-	obs = models.TextField('obss', blank=True, null=True)
-
-	def __str__(self):
-		return '%s_%s' % (self.material.n0, self.formato)
-	class Meta:
-		ordering = ['material', 'formato']
 
 # texto informacao
 class T0(models.Model): 
@@ -144,4 +106,43 @@ class B0(models.Model):
 # 	class Meta:
 # 		ordering = ['material', 'pk+ordem']
 
+
+# formatos
+class F0(models.Model):
+	d0 = models.DateTimeField(auto_now = True)
+	un = models.CharField(max_length=2, choices=[('mm','mm'),('px','px')], default='mm')
+	w = models.CharField('largura', max_length=10)
+	h = models.CharField('altura', max_length=10)
+	def __str__(self):
+		return '%s_%s_%s' % (self.un, self.w, self.h)
+
+# materiais
+class M0(models.Model):
+	d0 = models.DateTimeField(auto_now = True)
+	n0 = models.CharField('nome', max_length=30)
+
+	formatos = models.ManyToManyField(F0, through='P0', through_fields=('material','formato'), blank=True)
+	blocos = models.ForeignKey(B0, on_delete=models.CASCADE, blank=True, null=True)
+	# blocos = models.ManyToManyField(B00, through='O0', through_fields=('material','bloco'), blank=True)
+
+	obs = models.TextField('obss', blank=True, null=True)
+
+	def __str__(self):
+		return self.n0
+
+# pecas graficas
+class P0(models.Model):
+	d0 = models.DateTimeField(auto_now = True)
+	material = models.ForeignKey(M0, on_delete=models.CASCADE)
+	formato = models.ForeignKey(F0, on_delete=models.CASCADE)
+	q = models.CharField('quantidade', max_length=10)
+	verso = models.BooleanField('frenteverso')
+	papel = models.CharField(max_length=30, blank=True, null=True)
+	gramatura = models.CharField(max_length=10, blank=True, null=True)
+	obs = models.TextField('obss', blank=True, null=True)
+
+	def __str__(self):
+		return '%s_%s' % (self.material.n0, self.formato)
+	class Meta:
+		ordering = ['material', 'formato']
 
